@@ -1,3 +1,5 @@
+package ARRAYS;
+
 public class ArrayBuySellStock {
     public int buySell(int[] arr) {
 

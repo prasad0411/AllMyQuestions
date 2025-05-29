@@ -1,5 +1,4 @@
-//INCOMPLETE
-
+package ARRAYS;
 import java.util.*;
 
 public class ArraySearchInSortedandPivotedArray {

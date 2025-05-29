@@ -1,6 +1,4 @@
-
-// INCOMPLETE CODE
-
+package ARRAYS;
 public class ArrayRepeatAndMissingNumber {
 
     public static void repeatAndMissing(int arr[]) {

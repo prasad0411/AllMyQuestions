@@ -1,7 +1,4 @@
-//1) SORT THE ARRAY
-//2) i+m-1<n
-//INCOMPLETE
-
+package ARRAYS;
 public class ChocolateDistribution {
     public static void main(String[] args) {
         int arr[] = new int[] { 7, 3, 2, 4 };

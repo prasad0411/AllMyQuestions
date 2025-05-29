@@ -1,3 +1,6 @@
+
+package ARRAYS;
+
 //import java.util.Scanner;
 
 public class Practice_Array {

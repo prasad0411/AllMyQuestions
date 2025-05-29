@@ -1,5 +1,4 @@
-//INCOMPLETE
-
+package ARRAYS;
 class ArrayNextPermutation {
 
     public void nextPermutation(int[] arr) {

@@ -1,7 +1,4 @@
-//REVERSE AN ARRAY
-//EDGE CASES COVERED
-//TC: O(n)
-//SC: 1
+package ARRAYS;
 
 import java.util.*;
 

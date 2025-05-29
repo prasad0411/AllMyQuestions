@@ -1,3 +1,5 @@
+package ARRAYS;
+
 import java.util.Scanner;
 
 public class Arrays {

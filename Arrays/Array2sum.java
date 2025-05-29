@@ -1,3 +1,5 @@
+package ARRAYS;
+
 public class Array2sum {
     public static void main(String[] args) {
         int arr[] = new int[] { 1, 2, 33, 4 };

@@ -23,7 +23,7 @@ public class GroupAnagrams {
     public static List<List<String>> groupAnagrams(String[] strs) {
 
         for (int i = 0; i < strs.length; i++) {
-            Arrays.sort(strs[i]);
+            // Arrays.sort(strs[i]);
         }
         Arrays.sort(strs);
         List<String> ansArray = new ArrayList<>();

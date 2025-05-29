@@ -1,3 +1,5 @@
+package ARRAYS;
+
 public class ArrayCoPrimeNumbers {
     public static void main(String[] args) {
 
