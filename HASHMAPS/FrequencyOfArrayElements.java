@@ -9,16 +9,7 @@ public class FrequencyOfArrayElements {
         int ans[] = new int[2];
         ans = (highestAndLowestFrequency(
                 numbers));
-        System.out.println(ans[0] + " " + ans[1]);
-    }
-
-    private static HashMap<Integer, Integer> countryFrequency(int numbers[]) {
-        HashMap<Integer, Integer> hashMap = new HashMap<>();
-
-        for (int num : numbers) {
-            hashMap.put(num, hashMap.getOrDefault(num, 0) + 1);
-        }
-        return hashMap;
+        System.out.println("Highest Frquency is: " + ans[0] + " and Lowest Frquency is: " + ans[1]);
     }
 
     private static int[] highestAndLowestFrequency(int numbers[]) {
@@ -33,7 +24,6 @@ public class FrequencyOfArrayElements {
         int minFreq = Integer.MAX_VALUE;
 
         for (int num : hashMap.keySet()) {
-            // 1, 2, 3, 4, 1, 2, 3, 5
             if (maxFreq < hashMap.get(num)) {
                 maxFreq = hashMap.get(num);
                 ans[0] = num;
