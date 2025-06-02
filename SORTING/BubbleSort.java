@@ -1,6 +1,6 @@
 package SORTING;
 
-// SORT THE ARRAY, AND AT EACH ITERATION, PUT THE LARGEST ELEMENT AT LARGEST INDEX
+// AT EACH ITERATION, PUT THE LARGEST ELEMENT AT LARGEST INDEX
 
 public class BubbleSort {
     public static void main(String[] args) {

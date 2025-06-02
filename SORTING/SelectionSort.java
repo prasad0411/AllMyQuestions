@@ -1,6 +1,6 @@
 package SORTING;
 
-// SORT THE ARRAY, AND AT EACH ITERATION, PUT THE SMALLEST ELEMENT AT SMALLEST INDEX
+// AT EACH ITERATION, PUT THE SMALLEST ELEMENT AT SMALLEST INDEX
 
 public class SelectionSort {
     public static void main(String[] args) {
