@@ -31,6 +31,11 @@ public class MergeSort {
         }
     }
 
+    // TC: O(N * LOG N)
+    // NEED TO TRAVERSE THROUGH THE LOOP
+    // SC: O(n)
+    // CREATING A NEW TEMP ARRAY EACH TIME
+
     private static int[] mergeSort(int[] originalArray, int low, int high) {
         if (low < high) {
             int mid = low + (high - low) / 2;
@@ -41,10 +46,6 @@ public class MergeSort {
         return originalArray;
     }
 
-    // TC: O(N * LOG N)
-    // NEED TO TRAVERSE THROUGH THE LOOP
-    // SC: O(n)
-    // CREATING A NEW TEMP ARRAY EACH TIME
     private static void merge(int[] originalArray, int low, int mid, int high) {
         int tempArray[] = new int[high - low + 1];
         int left = low;

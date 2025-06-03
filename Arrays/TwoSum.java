@@ -2,7 +2,7 @@ package ARRAYS;
 
 import java.util.HashMap;
 
-// Given an array of integers `nums` and an integer target, 
+// Given an array of integers nums and an integer target, 
 // return the indices of the two numbers such that they add up to the target.
 // Each input would have exactly one solution, and you may not use the same element twice.
 

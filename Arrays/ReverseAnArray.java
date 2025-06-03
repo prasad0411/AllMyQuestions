@@ -14,8 +14,6 @@ public class ReverseAnArray {
         int inputarr[] = new int[] { 1 };
         System.out.println("Original array is: " + Arrays.toString(inputarr));
         System.out.print(Arrays.toString(reversedArrayInPlace(inputarr)));
-
-        // OPTIMAL APPROACH
         // optimalApproach(inputarr);
         // System.out.print(Arrays.toString(inputarr));
     }
