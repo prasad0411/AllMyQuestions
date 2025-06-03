@@ -2,12 +2,12 @@ package ARRAYS;
 
 import java.util.Arrays;
 
-// AN ARRAY IS GIVEN, NEED TO REVERSE IT  
+// AN ARRAY IS GIVEN, NEED TO REVERSE IT   
 
 // Input: [1, 5, 7, -1, 33, 444, 11]  
 // Output: [11, 444, 33, -1, 7, 5, 1]  
 
-public class ReverseAnArray {
+public class ReverseAnArray { 
 
     public static void main(String[] args) {
 
