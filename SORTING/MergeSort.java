@@ -4,7 +4,6 @@ package SORTING;
 // THEN, WE MERGE THE SORTED ELEMENTS TOGETHER
 
 public class MergeSort {
-
     public static void main(String[] args) {
         int originalArray[] = new int[] { 5, 3, 2, 1 };
         int low = 0;
