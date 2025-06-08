@@ -10,8 +10,9 @@ public class MoveZeroesToEnd {
         System.out.println(Arrays.toString(optimalApproach(numbers)));
     }
 
-    // TC: O(N): TRAVERSES THE ARRAY ONCE TO MOVE NON-ZERO ELEMENTS AND APPEND
-    // ZEROES
+    // TC: O(N)
+    // TRAVERSES THE ARRAY ONCE TO MOVE NON-ZERO ELEMENTS AND APPEND ZEROES
+
     // SC: O(1): MODIFIES THE ARRAY IN PLACE WITHOUT EXTRA SPACE
 
     public static int[] optimalApproach(int[] numbers) {
