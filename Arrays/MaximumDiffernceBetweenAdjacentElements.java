@@ -13,6 +13,7 @@ public class MaximumDiffernceBetweenAdjacentElements {
         int nums[] = new int[] { -5, -10, -5 };
         if (nums == null || nums.length < 2) {
             System.out.println("Invalid input array");
+            return;
         }
 
         System.out.println(maxAdjacentDistance(nums));
@@ -22,11 +23,10 @@ public class MaximumDiffernceBetweenAdjacentElements {
     // SC: O(1) No new data structure
 
     public static int maxAdjacentDistance(int[] nums) {
-        int max = Math.abs(nums[0] - nums[nums.length - 1]);
+        int max = Math.abs(nums[0] - nums[nums.length - 1]); // calculate 1st and last diff
 
-        for (int i = 0; i < nums.length - 1; i++)
+        for (int i = 0; i < nums.length - 1; i++) // n-2 because we are doing i+1
             max = Math.max(max, Math.abs(nums[i] - nums[i + 1]));
-
         return max;
     }
 }
