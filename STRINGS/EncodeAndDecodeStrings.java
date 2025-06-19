@@ -1,5 +1,8 @@
 package STRINGS;
 
+// GIVEN STRINGS, NEED TO ENCODE THEM AS WELL AS DECODE THEM
+// BRUTE FORCE APPROACH IS PENDING
+
 import java.util.ArrayList;
 import java.util.List;
 

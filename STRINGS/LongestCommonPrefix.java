@@ -4,9 +4,9 @@ package STRINGS;
 
 import java.util.Arrays;
 
-public class LongestCommonPrefix { 
+public class LongestCommonPrefix {
     public static void main(String[] args) {
-        String[] strs = new String[] { "flower",  "flow", "flight" };
+        String[] strs = new String[] { "flower", "flow", "flight" };
         System.out.println("Original Array is: " + Arrays.toString(strs));
         System.out.println("Longest common prefix is: '" + longestCommonPrefix(strs) + "'");
     }
