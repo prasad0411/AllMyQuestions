@@ -21,7 +21,7 @@ public class IsomorphicStrings {
         for (int i = 0; i < string1.length(); i++) {
             hashMap1.put(string1.charAt(i), hashMap1.getOrDefault(string1.charAt(i), 0) + 1);
             hashMap2.put(string2.charAt(i), hashMap2.getOrDefault(string2.charAt(i), 0) + 1);
-        }
+        } 
 
         if (!hashMap1.equals(hashMap2))
             return false;
