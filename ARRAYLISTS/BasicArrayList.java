@@ -7,7 +7,7 @@ public class BasicArrayList {
         ArrayList<String> arrL = new ArrayList<>();
         arrL.add(0, "10");
         arrL.add(1, "20");
-        System.out.println(arrL);
+        System.out.println("XYZZZZ"+ arrL);
 
         System.out.println("\n\nfor loop: =>");
         for (int i = 0; i < arrL.size(); i++) {

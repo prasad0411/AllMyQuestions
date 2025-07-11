@@ -8,14 +8,15 @@ import java.util.HashMap;
 public class ValidAnagram {
     public static void main(String[] args) {
         String string1 = "abu";
-        String string2 = "bc7";
+        String string2 = "abu";
 
         if (string1.length() != string2.length()) {
             System.out.println("Strings are not anagrams.");
             return;
         } else {
             System.out.println("HashMap Approach => " + sortingApproach(string1, string2));
-            System.out.println("Sorting Approach => " + hashMapApproach(string1, string2));
+            // System.out.println("Sorting Approach => " + hashMapApproach(string1,
+            // string2));
         }
     }
 
@@ -34,7 +35,7 @@ public class ValidAnagram {
 
     // TC: O(n log n). Sorting takes O(n log n) and comparison takes O(n)
     // SC: O(1). Sorting is in-place
-    
+
     public static boolean sortingApproach(String s, String t) {
         char[] s1 = s.toCharArray();
         char[] s2 = t.toCharArray();
