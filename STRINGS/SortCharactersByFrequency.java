@@ -15,7 +15,28 @@ public class SortCharactersByFrequency {
         System.out.println("Answer: " + frequencySort(originalString));
     }
 
-    private static String frequencySort(String originalString) {
+    public static void test() {
+        List<Integer> arrayL = new ArrayList<>();
+        arrayL.add(10);
+        arrayL.add(20);
+        arrayL.add(30);
+        arrayL.add(420);
+        arrayL.add(305);
+        System.out.println(arrayL);
+
+        System.out.println(arrayL.remove(0));
+        System.out.println(arrayL);
+
+        arrayL.add(0, 100);
+        arrayL.set(0, 55);
+         System.out.println(arrayL.contains(100);
+        System.out.println(arrayL);
+        for (int i = 0; i < arrayL.size(); i++) {
+
+        }
+    }
+
+    public static String frequencySort(String originalString) {
         HashMap<Character, Integer> hashMap = new HashMap<>();
         for (char ch : originalString.toCharArray()) {
             hashMap.put(ch, hashMap.getOrDefault(ch, 0) + 1);
