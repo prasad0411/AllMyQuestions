@@ -12,44 +12,28 @@ import java.util.List;
 public class SortCharactersByFrequency {
     public static void main(String[] args) {
         String originalString = "abcccccaaa";
-        System.out.println("Answer: " + frequencySort(originalString));
+        System.out.println("Answer: " + bruteForce(originalString));
     }
 
-    public static void test() {
-        List<Integer> arrayL = new ArrayList<>();
-        arrayL.add(10);
-        arrayL.add(20);
-        arrayL.add(30);
-        arrayL.add(420);
-        arrayL.add(305);
-        System.out.println(arrayL);
+    // TC: O(n) + O(m log m) For putting characters into hashmap, and sorting the
+    // list
+    // SC: O(n) // hashmap + array list + string builder
 
-        System.out.println(arrayL.remove(0));
-        System.out.println(arrayL);
+    public static String bruteForce(String originalString) {
+        char charArray[] = originalString.toCharArray();
 
-        arrayL.add(0, 100);
-        arrayL.set(0, 55);
-         System.out.println(arrayL.contains(100);
-        System.out.println(arrayL);
-        for (int i = 0; i < arrayL.size(); i++) {
-
-        }
-    }
-
-    public static String frequencySort(String originalString) {
         HashMap<Character, Integer> hashMap = new HashMap<>();
-        for (char ch : originalString.toCharArray()) {
-            hashMap.put(ch, hashMap.getOrDefault(ch, 0) + 1);
+        for (int i = 0; i < originalString.length(); i++) {
+            hashMap.put(charArray[i], hashMap.getOrDefault(charArray[i], 0) + 1);
         }
 
-        List<Character> arrList = new ArrayList<>(hashMap.keySet());
-        Collections.sort(arrList, (a, b) -> hashMap.get(b) - hashMap.get(a));
+        List<Character> arrayList = new ArrayList<>(hashMap.keySet());
+        Collections.sort(arrayList, (a, b) -> hashMap.get(b) - hashMap.get(a));
 
         StringBuilder answer = new StringBuilder();
-
-        for (char ch : arrList) {
-            int freq = hashMap.get(ch);
-            for (int i = 0; i < freq; i++) {
+        for (char ch : arrayList) {
+            int frequency = hashMap.get(ch);
+            for (int i = 0; i < frequency; i++) {
                 answer.append(ch);
             }
         }
