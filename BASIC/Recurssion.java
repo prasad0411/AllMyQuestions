@@ -2,7 +2,7 @@ package BASIC;
 
 public class Recurssion {
     public static void main(String[] args) {
-        recurssion(5, 0);
+        recurssion(5);
     }
 
     private static int recurssion(int num) {
