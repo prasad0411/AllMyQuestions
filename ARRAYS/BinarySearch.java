@@ -1,4 +1,4 @@
-package ARRAYS;
+package arrays;
 
 import java.util.Arrays;
 
@@ -17,11 +17,6 @@ public class BinarySearch {
         int inputArray[] = new int[] { 1, 2, 3, 4, 5 };
         int target = 4;
 
-        if (inputArray == null || inputArray.length == 0) {
-            System.out.println("Input array is invalid.");
-            System.exit(0);
-        }
-
         System.out.println("Original array is: " + Arrays.toString(inputArray));
         System.out.println("Target element is: " + target);
 
@@ -38,6 +33,11 @@ public class BinarySearch {
     // No new data structure is used to store anything.
 
     public static int search(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            System.out.println("Input array is invalid.");
+            System.exit(0);
+        }
+
         int leftP = 0;
         int rightP = nums.length - 1;
 

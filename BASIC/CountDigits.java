@@ -1,4 +1,4 @@
-package BASIC;
+package basic;
 
 // Count digits in a given number.
 

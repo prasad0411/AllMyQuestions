@@ -1,4 +1,4 @@
-package HEAP;
+package heap;
 
 public class Practice {
 

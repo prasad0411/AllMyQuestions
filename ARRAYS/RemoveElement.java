@@ -1,4 +1,4 @@
-package ARRAYS;
+package arrays;
 
 // Given an integer array nums and an integer val, remove all occurrences of val in-place and return the new length of the array.
 // Do not allocate extra space; modify the input array in-place with O(1) extra memory.
