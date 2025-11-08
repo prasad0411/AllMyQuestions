@@ -1,4 +1,4 @@
-package STRINGS;
+package strings;
 
 // REMOVE DUPLICATES FROM A STRING
 

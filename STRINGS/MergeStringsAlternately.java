@@ -1,4 +1,4 @@
-package STRINGS;
+package strings;
 
 // Given two strings word1 and word2, merge them by alternating characters from each string.
 

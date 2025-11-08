@@ -1,4 +1,4 @@
-package PATTERNS;
+package patterns;
 
 // Expected Output:
 //     *
