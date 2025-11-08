@@ -22,7 +22,11 @@ public class CountFrequency {
         System.out.println("Frequency of elements is: " + countFrequency(arr));
     }
 
+    // Time Complexity: O(n)
+    // Need to traverse through all elements
+    // Space Complexity: O(k) for all unique elements in the Map
     private static Map<Integer, Integer> countFrequency(int[] inputArray) {
+        // EDGE CASE: Handle null or empty array
         if (inputArray == null || inputArray.length < 1) {
             return new HashMap<>();
         }

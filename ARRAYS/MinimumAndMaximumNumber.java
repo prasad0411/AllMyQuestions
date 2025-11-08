@@ -1,5 +1,7 @@
 package arrays;
 
+import java.util.Arrays;
+
 // AN ARRAY IS GIVEN, NEED TO RETURN THE MINIMUM AND MAXIMUM ELEMENT FROM THE ARRAY  
 
 // Input: [1, 5, 7, -1, 33, 444, 11]  
@@ -10,19 +12,17 @@ package arrays;
 
 public class MinimumAndMaximumNumber {
     public static void main(String[] args) {
-        int[] array = new int[] { 1, 2, 3 };
+        int[] array = new int[] {};
 
-        if (array == null || array.length == 0) {
-            System.out.println("Invalid array");
-            return;
-        }
-        if (array.length < 2) {
-            System.out.println("min and max number is :" + array[0]);
-            return;
-        }
-
-        int[] min_max = optimalApproach(array);
+        int[] min_max = bruteForce(array);
         System.out.print("Mininum number is: " + min_max[0] + ". Maximum number is: " + min_max[1]);
+    }
+
+    public static int[] bruteForce(int[] array) {
+        validate(array);
+        
+        Arrays.sort(array);
+        return new int[] { array[0], array[array.length - 1] };
     }
 
     // Time Complexity: O(n).
@@ -32,14 +32,25 @@ public class MinimumAndMaximumNumber {
     // and max values
 
     public static int[] optimalApproach(int[] array) {
-        int minNumber = Integer.MAX_VALUE;
-        int maxnumber = Integer.MIN_VALUE;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > maxnumber)
-                maxnumber = array[i];
-            if (array[i] < minNumber)
-                minNumber = array[i];
+        validate(array);
+
+        int minValue = Integer.MAX_VALUE;
+        int maxValue = Integer.MIN_VALUE;
+
+        for (int num : array) {
+            if (num < minValue)
+                minValue = num;
+            if (num > maxValue)
+                maxValue = num;
         }
-        return new int[] { minNumber, maxnumber };
+
+        return new int[] { minValue, maxValue };
+    }
+
+    private static void validate(int[] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("Array size is invalid. Exiting.");
+        }
+
     }
 }
