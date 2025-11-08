@@ -1,4 +1,6 @@
-package STRINGS;
+package strings;
+
+// REVERSE A STRING
 
 public class ReverseString {
     public static void main(String[] args) {

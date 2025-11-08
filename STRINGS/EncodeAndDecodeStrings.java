@@ -1,10 +1,13 @@
-package STRINGS;
+package strings;
+
+// GIVEN STRINGS, NEED TO ENCODE THEM AS WELL AS DECODE THEM
+// BRUTE FORCE APPROACH IS PENDING
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EncodeAndDecodeStrings {
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Test");
         arrayList.add("Book");
