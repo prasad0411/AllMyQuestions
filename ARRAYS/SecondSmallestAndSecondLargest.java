@@ -25,6 +25,10 @@ public class SecondSmallestAndSecondLargest {
                         + resultArrOptimal[1]);
     }
 
+    // Time Complexity: O(n log n)
+    // Sort the array, and then traverse through all elements to find 2nd smallest
+    // and 2nd largest
+    // Space Complexity: O(1) In place sorting
     private static int[] bruteForceApproach(int[] inputArray) {
         // EDGE CASE
         if (inputArray == null || inputArray.length < 2) {

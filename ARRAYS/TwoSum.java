@@ -1,5 +1,3 @@
-package arrays;
-
 import java.util.HashMap;
 
 // Given an array of integers `nums` and an integer target, 
