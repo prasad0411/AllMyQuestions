@@ -1,5 +1,3 @@
-package arrays;
-
 import java.util.Arrays;
 
 // WE HAVE A SORTED ARRAY AND A TARGET ELEMENT  

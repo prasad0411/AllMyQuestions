@@ -1,5 +1,3 @@
-package arrays;
-
 public class MaximumSubarraySum {
 
     // Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
