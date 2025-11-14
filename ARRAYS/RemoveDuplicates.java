@@ -1,5 +1,3 @@
-package arrays;
-
 import java.util.HashSet;
 
 // REMOVE DUPLICATE NUMBERS FROM AN ARRAY, IN PLACE
@@ -13,16 +11,8 @@ import java.util.HashSet;
 
 public class RemoveDuplicates {
     public static void main(String[] args) {
-        
         int nums[] = new int[] { 0, 0, 0 };
-        if (nums == null || nums.length == 0) {
-            System.out.println("Invalid input array");
-            return;
-        }
-        if (nums.length < 2) {
-            System.out.println("Size of valid array is: " + nums.length);
-            return;
-        }
+
         System.out.println((notInPlace(nums)));
     }
 

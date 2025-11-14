@@ -62,6 +62,10 @@ public class SecondSmallestAndSecondLargest {
         return new int[] { secondLargest, secondSmallest };
     }
 
+    // Time Complexity: O(n)
+    // Traverse through all elements, using 4 variables to track min, max, 2nd min,
+    // 2nd max
+    // Space Complexity: O(1) No sorting and no new data structure used
     private static int[] optimalApproach(int inputArray[]) {
         // EDGE CASE
         if (inputArray == null || inputArray.length < 2) {
