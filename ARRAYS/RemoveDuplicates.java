@@ -14,9 +14,9 @@ public class RemoveDuplicates {
     public static void main(String[] args) {
         int nums[] = new int[]{-1, -1, 1, 1, 11};
         System.out.println("Original array is: " + Arrays.toString(nums));
-
-        int uniqueElements = optimalApproach(nums);
-        for (int i = 0; i < uniqueElements; i++) {
+        // int uniqueElements = bruteForceApproach(nums);
+        int uniqueElements2 = optimalApproach(nums);
+        for (int i = 0; i < uniqueElements2; i++) {
             System.out.print(nums[i] + " ");
         }
     }
@@ -58,7 +58,6 @@ public class RemoveDuplicates {
 
         System.out.println("Optimal Approach =>");
         int uniqueIndex = 0;
-        // -1, -1, 1, 1, 11
         for (int i = 1; i < nums.length; i++) {
             if (nums[uniqueIndex] != nums[i]) {
                 ++uniqueIndex;
