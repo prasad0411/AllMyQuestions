@@ -22,7 +22,7 @@ public class RemoveDuplicates {
     }
 
     // TC: O(n) Using 1 loop to traverse through all elements and insert into the Set.
-    // Another loop to put Set values back into array
+    // Another loop to put the unique Set values into array
     // SC: O(n) Creation of hashSet to store unique elements
     public static int bruteForceApproach(int[] nums) {
         // BASE CASE: Array being null or empty
@@ -48,8 +48,8 @@ public class RemoveDuplicates {
         return uniqueElements;
     }
 
-    // TC: O(n) Traverse through all elements once and put in original array
-    // SC: O(1) No new data structure
+    // TC: O(n) Traverse through all elements once and modify the array in place
+    // SC: O(1) No new data structure created
     public static int optimalApproach(int[] nums) {
         // BASE CASE: Array being null or empty
         if (nums == null || nums.length < 1) {
