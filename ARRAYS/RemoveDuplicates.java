@@ -1,61 +1,71 @@
-import java.util.HashSet;
+
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 // REMOVE DUPLICATE NUMBERS FROM AN ARRAY, IN PLACE
 // RETURN THE NUMBER OF UNIQUE ELEMENTS IN THE ARRAY
-
 // Input: [1, 2, 2, 3];
-// Output: 3
-
-// Input: [ 0, 0, 0];
-// Output: 1
-
+// Output: 1, 2, 3
+// Input: [0, 0, 0];
+// Output: 0
 public class RemoveDuplicates {
+
     public static void main(String[] args) {
-        int nums[] = new int[] { 0, 0, 0 };
+        int nums[] = new int[]{-1, -1, 1, 1, 11};
+        System.out.println("Original array is: " + Arrays.toString(nums));
 
-        System.out.println((notInPlace(nums)));
+        int uniqueElements = optimalApproach(nums);
+        for (int i = 0; i < uniqueElements; i++) {
+            System.out.print(nums[i] + " ");
+        }
     }
 
-    // TC: O(n) Using 1 loop to traverse all elements.
-    // SC: O(n) Creation of hashSet and extra array to store the unique elements
+    // TC: O(n) Using 1 loop to traverse through all elements and insert into the Set.
+    // Another loop to put Set values back into array
+    // SC: O(n) Creation of hashSet to store unique elements
+    public static int bruteForceApproach(int[] nums) {
+        // BASE CASE: Array being null or empty
+        if (nums == null || nums.length < 1) {
+            throw new IllegalArgumentException("Input array is null or has an invalid size.");
+        }
+        System.out.println("Brute Force =>");
 
-    public static int notInPlace(int[] nums) {
-        System.out.print("Not in place approach. Size of valid array is: ");
-        HashSet<Integer> hashSet = new HashSet<>(nums.length);
-        int finalArray[] = new int[nums.length];
-        int j = 0;
-
-        for (int i = 0; i < nums.length; i++) {
-            if (!hashSet.contains(nums[i])) {
-                hashSet.add(nums[i]);
-                finalArray[j++] = nums[i];
+        int uniqueElements = 0;
+        Set<Integer> set = new LinkedHashSet<>();
+        for (int num : nums) {
+            if (!set.contains(num)) {
+                set.add(num);
+                uniqueElements++;
             }
         }
-        return j;
+
+        int i = 0;
+        for (int num : set) {
+            nums[i++] = num;
+        }
+
+        return uniqueElements;
     }
 
-    // TC: O(n) Using 1 loop to traverse all elements.
-    // SC: O(n) Modifying the array in place
+    // TC: O(n) Traverse through all elements once and put in original array
+    // SC: O(1) No new data structure
+    public static int optimalApproach(int[] nums) {
+        // BASE CASE: Array being null or empty
+        if (nums == null || nums.length < 1) {
+            throw new IllegalArgumentException("Input array is null or has an invalid size.");
+        }
 
-    public static int inPlace(int[] nums) {
-        System.out.print("In place approach. Size of valid array is: ");
-        int uniquePointer = 0;
+        System.out.println("Optimal Approach =>");
+        int uniqueIndex = 0;
+        // -1, -1, 1, 1, 11
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] != nums[uniquePointer]) {
-                uniquePointer++;
-                nums[uniquePointer] = nums[i];
+            if (nums[uniqueIndex] != nums[i]) {
+                ++uniqueIndex;
+                nums[uniqueIndex] = nums[i];
             }
         }
-        return uniquePointer + 1; // number of unique elements
-    }
 
-    public static int inPlace2(int[] nums) {
-        System.out.print("In place approach. Size of valid array is: ");
-        // 1,1,2,2,3,3,4
-
-        for (int i = 0; i < nums.length; i++) {
-
-        }
-        return 0;
+        return uniqueIndex + 1;
     }
 }

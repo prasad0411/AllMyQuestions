@@ -1,28 +1,26 @@
-import java.util.Arrays;
-// AN UNSORTED ARRAY IS GIVEN, NEED TO FIND 2ND LARGEST AND 2ND SMALLEST ELEMENTS
 
+import java.util.Arrays;
+
+// AN UNSORTED ARRAY IS GIVEN, NEED TO FIND 2ND LARGEST AND 2ND SMALLEST ELEMENTS
 // Input : 3, 4, 1, 7, 23, 1
 // Output: 2nd Largest element: 7, 2nd Smallest element: 3
-
 // Input : 1, 2, 3
 // Output: 2nd Largest element: 2, 2nd Smallest element: 2
-
 // Input: 1, 1, 1
 // Output: -1, -1 
-
 public class SecondSmallestAndSecondLargest {
+
     public static void main(String[] args) {
-        int inputArray[] = new int[] { 3, 1, 2 };
+        int inputArray[] = new int[]{3, 1, 2};
         System.out.println("Original array is: " + Arrays.toString(inputArray));
         // int resultArrBrute[] = bruteForceApproach(inputArray);
         // System.out.println(
         // "Brute =>\n2nd largest element is: " + resultArrBrute[0] + "\n2nd smallest
-        // element is: "
-        // + resultArrBrute[1]);
+        // element is: "+ resultArrBrute[1]);
         int resultArrOptimal[] = optimalApproach(inputArray);
         System.out.println(
                 "Optimal Approach =>\n2nd largest element is: " + resultArrOptimal[0] + "\n2nd smallest element is: "
-                        + resultArrOptimal[1]);
+                + resultArrOptimal[1]);
     }
 
     // Time Complexity: O(n log n)
@@ -56,10 +54,10 @@ public class SecondSmallestAndSecondLargest {
 
         // IF ELEMENTS ARE DUPLICATE
         if (secondSmallest == -1 || secondLargest == -1) {
-            return new int[] { -1, -1 };
+            return new int[]{-1, -1};
         }
 
-        return new int[] { secondLargest, secondSmallest };
+        return new int[]{secondLargest, secondSmallest};
     }
 
     // Time Complexity: O(n)
@@ -97,8 +95,8 @@ public class SecondSmallestAndSecondLargest {
 
         // IF ELEMENTS ARE DUPLICATE
         if (secondLargestValue == Integer.MIN_VALUE || secondSmallestValue == Integer.MAX_VALUE) {
-            return new int[] { -1, -1 };
+            return new int[]{-1, -1};
         }
-        return new int[] { secondLargestValue, secondSmallestValue };
+        return new int[]{secondLargestValue, secondSmallestValue};
     }
 }
