@@ -1,5 +1,3 @@
-package arrays;
-
 import java.util.Arrays;
 
 // 2 ARRAYS ARE GIVEN, BOTH ARE IN THE ASCENDING ORDER
@@ -41,6 +39,7 @@ public class MergeSortedArrays {
         int newArray[] = new int[m + n];
         int i = 0, j = 0, k = 0;
         while (i < m && j < n) {
+            // 1, 2, 3, 4 0, 1, 2, 3, 4, 5
             if (nums1[i] < nums2[j]) {
                 newArray[k++] = nums1[i++];
             } else {
@@ -60,6 +59,7 @@ public class MergeSortedArrays {
 
     // Approach: Use the 0 values of array 1 to populate the biggest elements first.
     // and then we populate the smallest elements.
+
     // TC: O(m+n).
     // Add m+ n elements from nums1 and nums2 to result array
     // SC: O(1). No new data structure used. Modified nums1 in place
