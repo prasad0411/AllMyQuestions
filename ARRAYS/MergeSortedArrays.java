@@ -1,3 +1,4 @@
+
 import java.util.Arrays;
 
 // 2 ARRAYS ARE GIVEN, BOTH ARE IN THE ASCENDING ORDER

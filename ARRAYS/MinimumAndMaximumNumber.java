@@ -1,11 +1,11 @@
-package arrays;
 
 import java.util.Arrays;
 
+
 public class MinimumAndMaximumNumber {
     public static void main(String[] args) {
-        int[] array = new int[] {1, 10000, 11, -2323};
-        
+        int[] array = new int[] { 1, 10000, 11, -2323 };
+
         try {
             int[] result = optimalApproach(array);
             System.out.println("Min: " + result[0] + ", Max: " + result[1]);
@@ -28,15 +28,17 @@ public class MinimumAndMaximumNumber {
         if (array == null || array.length == 0) {
             throw new IllegalArgumentException("Array cannot be null or empty");
         }
-        
+
         int minValue = Integer.MAX_VALUE;
         int maxValue = Integer.MIN_VALUE;
-        
+
         for (int num : array) {
-            if (num < minValue) minValue = num;
-            if (num > maxValue) maxValue = num;
+            if (num < minValue)
+                minValue = num;
+            if (num > maxValue)
+                maxValue = num;
         }
-        
+
         return new int[] { minValue, maxValue };
     }
 }

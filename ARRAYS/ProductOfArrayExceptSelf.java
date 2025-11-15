@@ -1,5 +1,3 @@
-package arrays;
-
 import java.util.Arrays;
 
 // Given an integer array, return an array answer such that answer[i] is the product of
