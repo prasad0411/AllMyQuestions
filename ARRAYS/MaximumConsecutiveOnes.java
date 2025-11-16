@@ -22,6 +22,10 @@ public class MaximumConsecutiveOnes {
     // Time Complexity: O(n). Traverse through all elements once
     // Space Complexity: O(1). No new data structure is created.
     private static int optimalApproach(int[] inputArray) {
+        // BASE CASE: Array is null or has no elements
+        if (inputArray == null || inputArray.length < 1)
+            throw new IllegalArgumentException("Array is null or has invalid size.");
+
         int currentCount = 0, maxCount = 0;
         int targetElement = 1;
 
