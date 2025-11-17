@@ -28,8 +28,13 @@ public class FindSingleNumber {
     // once
     // Space Complexity: O(1). No new data structure is created.
     public static int bruteForce(int[] array) {
+        // Base case
+        if (array == null || array.length < 1) {
+            throw new IllegalArgumentException("Array is null or has an invalid size.");
+        }
+
         Arrays.sort(array);
-        // 1,1,2,2,4
+
         for (int i = 0; i < array.length - 1; i += 2) {
             if (array[i] != array[i + 1]) {
                 return array[i];
@@ -44,13 +49,18 @@ public class FindSingleNumber {
     // loop to find ans element with freq:1
     // Space Complexity: O(n). Creating HashMap
     public static int betterThanBruteForce(int[] array) {
+        // Base case
+        if (array == null || array.length < 1) {
+            throw new IllegalArgumentException("Array is null or has an invalid size.");
+        }
+
         Map<Integer, Integer> hashMap = new HashMap<>();
         for (int number : array) {
             hashMap.put(number, hashMap.getOrDefault(number, 0) + 1);
         }
 
         for (int number : array) {
-            if (hashMap.get(number) < 2)
+            if (hashMap.get(number) == 1)
                 return number;
         }
 
