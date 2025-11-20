@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 // AN UNSORTED ARRAY IS GIVEN, NEED TO SORT IT IN PLACE FOR THE 3 NUMBERS/ COLORS, 0 , 1, 2
+
 // Input: [2, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 0, 2, 2, 2, 1, 1]  
 // Output: [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2]
+
 // Input:[2,0,2,1,1,0]
 // Output:[0,0,1,1,2,2]
+
 // Input: [2,0,1]
 // Output: [0,1,2]
 public class SortColors {
