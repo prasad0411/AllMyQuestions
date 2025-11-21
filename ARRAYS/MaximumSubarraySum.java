@@ -1,56 +1,40 @@
 
+import java.util.Arrays;
+
+// AN UNSORTED ARRAY IS GIVEN, FIND THE LARGEST SUM AND PRINT THE SUBARRAY 
+// Input: [-2,1,-3,4,-1,2,1,-5,4]  
+// Output: 6, Explaination: 4,-1,2,1 is the subarray
+// Input:[1]
+// Output: 1, Explaination: 1 is the subarray
+// Input: [5,4,-1,7,8]
+// Output: 23, Explaination: 5,4,-1,7,8 is the subarray
 public class MaximumSubarraySum {
 
-    // Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
-    // Output: 6
-    // Explanation: The subarray [4,-1,2,1] has the largest sum 6
     public static void main(String[] args) {
-        int[] nums = new int[]{-2, -1};
-
-        if (nums.length == 0 || nums == null) {
-            System.out.println("Invalid array");
-            return;
-        }
-
-        if (nums.length == 1) {
-            System.out.println("Sum of maximum Subarray is: " + nums[0]);
-            return;
-        }
-
-        System.out.println("Sum of maximum Subarray is: " + optimalApproach(nums));
+        int[] inputArray = new int[]{5, 4, -1, 7, 8};
+        System.out.println("Original array is: " + Arrays.toString(inputArray));
+        System.out.println("Sum of maximum Subarray is: " + bruteForce(inputArray));
     }
 
-    // TC: O(n*n) Using 2 loops to traverse through all elements of array one by one
-    // Maintaing currentSum as 0 for every new iteration
-    // SC: O(1) Not using any new data structure
-    public static int bruteForce(int[] nums) {
-        int maximumSum = nums[0];
+    public static int bruteForce(int[] inputArray) {
+        if (inputArray == null || inputArray.length == 0) {
+            throw new IllegalArgumentException("Array is null or has invalid size.");
+        }
 
-        for (int i = 0; i < nums.length; i++) {
-            int currentSum = 0;
-            for (int j = i; j < nums.length;) {
-                currentSum += nums[j++];
-                maximumSum = Math.max(maximumSum, currentSum);
+        int maximumSum = Integer.MIN_VALUE;
+        for (int i = 0; i < inputArray.length; i++) {
+            int sum = 0;
+
+            for (int j = i; j < inputArray.length; j++) {
+                sum += inputArray[j];
+                maximumSum = Math.max(sum, maximumSum);
             }
+            // 5, 4, -1, 7, 8
         }
         return maximumSum;
     }
 
-    // TC: O(n) Using 1 loop to traverse through all elements of array one by one
-    // Maintaing currentSum as 0 for every new iteration
-    // SC: O(1) Not using any new data structure
-    // Input: nums = [1,2]
     public static int optimalApproach(int[] nums) {
-        int maximumSum = nums[0], currentSum = 0;
-
-        for (int i = 0; i < nums.length;) {
-            currentSum += nums[i++];
-            maximumSum = Math.max(maximumSum, currentSum);
-
-            if (currentSum < 0) {
-                currentSum = 0;
-            }
-        }
-        return maximumSum;
+        return 0;
     }
 }
