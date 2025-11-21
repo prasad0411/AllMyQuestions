@@ -3,37 +3,78 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-// AN UNSORTED ARRAY IS GIVEN, NEED TO FIND THE ELEMENT THAT OCCURS ARR.LENGTH/2 TIMES
+// IN AN UNSORTED ARRAY, FIND THE ELEMENT THAT OCCURS MORE THAN N/2 TIMES
+
 // Input: [3,2,3]  
 // Output: 3
 
 // Input:[2,2,1,1,1,2,2]
 // Output:2
-
 public class MajorityElement {
+
     public static void main(String[] args) {
-        int[] inputArray = new int[]{3, 2, 3};
+        int[] inputArray = new int[]{2, 2, 1, 1, 1, 2, 2};
         System.out.println("Original array is: " + Arrays.toString(inputArray));
-        System.out.println("Majority element is: " + majorityElement(inputArray));
+        // System.out.println("Majority element is: " + bruteForce(inputArray));
+        System.out.println("Majority element is: " + optimalApproach(inputArray));
     }
 
-    private static int majorityElement(int[] inputArray) {
-        Map<Integer, Integer> hashMap = new HashMap<>();
-        int i = 0;
+    // APPROACH: Boyer-Moore Voting Algorithm
+    // Declare candidateElement as arr[0] and count as 1.
+    // Use loop to check if candidateElement == currentElement, if yes, then count++, else count--
+    // If count becomes 0, then make current element as candidateElement.
 
-        for (; i < inputArray.length; i++) {
-            hashMap.put(inputArray[i], hashMap.getOrDefault(inputArray[i], 0)
-                    + 1);
+    // Time Complexity: O(n)
+    // Traversing through the whole array and checking for maximumElement based on counts
+
+    // Space Complexity: O(1)
+    // No new data structure
+    private static int optimalApproach(int[] inputArray) {
+        validate(inputArray);
+
+        int count = 1;
+        int candidateElement = inputArray[0];
+
+        for (int i = 1; i < inputArray.length; i++) {
+            if (count == 0) {
+                candidateElement = inputArray[i];
+            }
+            count += (inputArray[i] == candidateElement) ? 1 : -1;
         }
 
-        int majorityElement = 0;
-        for (Map.Entry<Integer, Integer> entry : hashMap.entrySet()) {
-            if (entry.getValue() > inputArray.length / 2) {
-                majorityElement = entry.getKey();
-                break;
+        return candidateElement;
+    }
+
+    // APPROACH: Use a hashmap to store freq of each element.
+
+    // During insertion, check if element' count exceeds N/2 times
+    // Time Complexity: O(n).
+
+    // Traversing through the whole array and putting freq of each element into the Map
+    // Space Complexity: O(n).
+    // Creating hashMap
+    private static int bruteForce(int[] inputArray) {
+        // BASE CASE
+        validate(inputArray);
+
+        Map<Integer, Integer> freqMap = new HashMap<>();
+        int threshold = inputArray.length / 2;
+        for (int num : inputArray) {
+            int currentCount = freqMap.getOrDefault(num, 0) + 1;
+            freqMap.put(num, currentCount);
+
+            if (currentCount > threshold) {
+                return num;
             }
         }
 
-        return majorityElement;
+        return -1;
+    }
+
+    // Validates array for null or being empty
+    private static void validate(int[] inputArray) {
+        if (inputArray == null || inputArray.length == 0) {
+            throw new IllegalArgumentException("Array is null or empty.");
+        }
     }
 }
