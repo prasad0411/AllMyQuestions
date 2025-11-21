@@ -16,12 +16,19 @@ public class MaximumSubarraySum {
         System.out.println("Sum of maximum Subarray is: " + bruteForce(inputArray));
     }
 
+    // APPROACH: Use 2 loops.
+    // Start i from from 0th index, j=1, and traverse both till array length.
+    // Use current sum as 0, and global sum as Integer.min value to keep track of max sum at each iteration
+    // Time Complexity: O(n* n)
+    // Traversing the whole array twice, considering every possible subarray
+    // Space Complexity: O(1)
+    // No new data structure
     public static int bruteForce(int[] inputArray) {
         if (inputArray == null || inputArray.length == 0) {
             throw new IllegalArgumentException("Array is null or has invalid size.");
         }
 
-        int maximumSum = Integer.MIN_VALUE;
+        int maximumSum = inputArray[0];
         for (int i = 0; i < inputArray.length; i++) {
             int sum = 0;
 
