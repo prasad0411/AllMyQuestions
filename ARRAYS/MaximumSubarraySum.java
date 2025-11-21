@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class MaximumSubarraySum {
 
     public static void main(String[] args) {
-        int[] inputArray = new int[]{5, 4, -1, 7, 8};
+        int[] inputArray = new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4};
         System.out.println("Original array is: " + Arrays.toString(inputArray));
         System.out.println("Sum of maximum Subarray is: " + bruteForce(inputArray));
     }
@@ -23,7 +23,30 @@ public class MaximumSubarraySum {
     // Traversing the whole array twice, considering every possible subarray
     // Space Complexity: O(1)
     // No new data structure
+    public static int optimalApproach(int[] inputArray) {
+        //BASE CASE
+        if (inputArray == null || inputArray.length == 0) {
+            throw new IllegalArgumentException("Array is null or has invalid size.");
+        }
+
+        int sum = inputArray[0];
+        int maximumSum = inputArray[0];
+        for (int i = 1; i < inputArray.length; i++) {
+            sum = Math.max(sum + inputArray[i], inputArray[i]);
+            maximumSum = Math.max(maximumSum, sum);
+        }
+        return maximumSum;
+    }
+
+    // APPROACH: Use 2 loops.
+    // Start i from from 0th index, j=1, and traverse both till array length.
+    // Use current sum as 0, and global sum as Integer.min value to keep track of max sum at each iteration
+    // Time Complexity: O(n* n)
+    // Traversing the whole array twice, considering every possible subarray
+    // Space Complexity: O(1)
+    // No new data structure
     public static int bruteForce(int[] inputArray) {
+        //BASE CASE
         if (inputArray == null || inputArray.length == 0) {
             throw new IllegalArgumentException("Array is null or has invalid size.");
         }
@@ -39,9 +62,5 @@ public class MaximumSubarraySum {
             // 5, 4, -1, 7, 8
         }
         return maximumSum;
-    }
-
-    public static int optimalApproach(int[] nums) {
-        return 0;
     }
 }
