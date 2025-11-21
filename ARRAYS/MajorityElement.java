@@ -65,13 +65,6 @@ public class MajorityElement {
         throw new AssertionError("No majority element exists");
     }
 
-    // Validates array for null or being empty
-    private static void validate(int[] inputArray) {
-        if (inputArray == null || inputArray.length == 0) {
-            throw new IllegalArgumentException("Array is null or empty.");
-        }
-    }
-
     // APPROACH: Sort the array so that the middle element is the ans, as it has to occur N/2 times
     // Time Complexity: O(n log n).
     // Space Complexity: O(1).
@@ -81,5 +74,12 @@ public class MajorityElement {
 
         Arrays.sort(inputArray);
         return inputArray[inputArray.length / 2];
+    }
+
+    // Validates array for null or being empty
+    private static void validate(int[] inputArray) {
+        if (inputArray == null || inputArray.length == 0) {
+            throw new IllegalArgumentException("Array is null or empty.");
+        }
     }
 }
