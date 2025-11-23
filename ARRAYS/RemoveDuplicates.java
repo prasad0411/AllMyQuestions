@@ -12,7 +12,7 @@ import java.util.Set;
 public class RemoveDuplicates {
 
     public static void main(String[] args) {
-        int nums[] = new int[]{-1, -1, 1, 1, 11};
+        int nums[] = new int[] { -1, -1, 1, 1, 11 };
         System.out.println("Original array is: " + Arrays.toString(nums));
         // int uniqueElements = bruteForceApproach(nums);
         int uniqueElements2 = optimalApproach(nums);
@@ -21,7 +21,8 @@ public class RemoveDuplicates {
         }
     }
 
-    // TC: O(n) Using 1 loop to traverse through all elements and insert into the Set.
+    // TC: O(n) Using 1 loop to traverse through all elements and insert into the
+    // Set.
     // Another loop to put the unique Set values into array
     // SC: O(n) Creation of hashSet to store unique elements
     public static int bruteForceApproach(int[] nums) {
