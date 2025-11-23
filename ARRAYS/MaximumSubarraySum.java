@@ -2,10 +2,13 @@
 import java.util.Arrays;
 
 // AN UNSORTED ARRAY IS GIVEN, FIND THE LARGEST SUM AND PRINT THE SUBARRAY 
+
 // Input: [-2,1,-3,4,-1,2,1,-5,4]  
 // Output: 6, Explaination: 4,-1,2,1 is the subarray
+
 // Input:[1]
 // Output: 1, Explaination: 1 is the subarray
+
 // Input: [5,4,-1,7,8]
 // Output: 23, Explaination: 5,4,-1,7,8 is the subarray
 public class MaximumSubarraySum {
@@ -14,13 +17,15 @@ public class MaximumSubarraySum {
         int[] inputArray = new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4};
         System.out.println("Original array is: " + Arrays.toString(inputArray));
         System.out.println("Sum of maximum Subarray is: " + bruteForce(inputArray));
+        // System.out.println("Sum of maximum Subarray is: " + optimalApproach(inputArray));
     }
 
-    // APPROACH: Use 2 loops.
-    // Start i from from 0th index, j=1, and traverse both till array length.
-    // Use current sum as 0, and global sum as Integer.min value to keep track of max sum at each iteration
-    // Time Complexity: O(n* n)
-    // Traversing the whole array twice, considering every possible subarray
+    // APPROACH: Use Kadane' Algorithm.
+    // Start i from from 1st index, and traverse till array length.
+    // Use current sum and global sum as arr[0] to keep track of current sum, max sum at each iteration
+    
+    // Time Complexity: O(n)
+    // Traversing the whole array once, considering every possible subarray
     // Space Complexity: O(1)
     // No new data structure
     public static int optimalApproach(int[] inputArray) {
@@ -35,12 +40,14 @@ public class MaximumSubarraySum {
             sum = Math.max(sum + inputArray[i], inputArray[i]);
             maximumSum = Math.max(maximumSum, sum);
         }
+
         return maximumSum;
     }
 
     // APPROACH: Use 2 loops.
     // Start i from from 0th index, j=1, and traverse both till array length.
     // Use current sum as 0, and global sum as Integer.min value to keep track of max sum at each iteration
+    
     // Time Complexity: O(n* n)
     // Traversing the whole array twice, considering every possible subarray
     // Space Complexity: O(1)
@@ -59,8 +66,9 @@ public class MaximumSubarraySum {
                 sum += inputArray[j];
                 maximumSum = Math.max(sum, maximumSum);
             }
-            // 5, 4, -1, 7, 8
         }
+
         return maximumSum;
     }
+    // -2, 1, -3, 4, -1, 2, 1, -5, 4
 }
