@@ -6,7 +6,6 @@
 
 // Input: [3,1,-2,-5,2,-4];
 // Output: [3,-2,1,-5,2,-4]]
-
 // Input: [-1,1];
 // Output: [1,-1]
 
@@ -17,23 +16,50 @@ public class RearrangeArayElementsBySign {
         int[] numsArr = new int[] { -1, 1 };
         System.out.println("Original array is: " + Arrays.toString(numsArr));
         System.out.println("Rearranged array is: " + Arrays.toString(bruteForce(numsArr)));
+        System.out.println("Rearranged array is: " + Arrays.toString(betterThanBruteForce(numsArr)));
     }
 
-    // APPROACH:
+    // APPROACH: Create a new array for storing the result array
+    // Traverse original array once and based on +/- element, place it at +2 index
+    // each time in result array
+
     // Time Complexity: O(n)
-    //
-    // Space Complexity: O(1)
-    // No new data structure
-    private static int[] optimalApproach(int[] nums) {
+    // Traverse original array once for positive elements and negative elements
+    // Create a new array as original size
+
+    // Space Complexity: O(n)
+    // Creating a new array O(n)
+    private static int[] betterThanBruteForce(int[] nums) {
         validate(nums);
-        return null;
+
+        int[] resultArr = new int[nums.length];
+        int posIndex = 0;
+        int negIndex = 1;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > 0) {
+                resultArr[posIndex] = nums[i];
+                posIndex = posIndex + 2;
+            } else if (nums[i] < 0) {
+                resultArr[negIndex] = nums[i];
+                negIndex = negIndex + 2;
+            }
+        }
+
+        return resultArr;
     }
 
-    // APPROACH:
-    // Time Complexity: O(n)
-    //
-    // Space Complexity: O(1)
-    // No new data structure
+    // APPROACH: Create a new array for storing just positive integers.
+    // Create another array for storing just negative integers.
+    // Traverse both arrays and put each element froom both arrays into the original
+    // array
+
+    // Time Complexity: O(3n) = O(n)
+    // Traverse original array once for positive elements, once for negative
+    // elements, once from the 2 new arrays to populate the original array
+
+    // Space Complexity: O(n)
+    // Creating 2 new arrays of size O(n)
     private static int[] bruteForce(int[] nums) {
         validate(nums);
 
@@ -66,6 +92,10 @@ public class RearrangeArayElementsBySign {
         if (nums == null || nums.length == 0) {
             throw new IllegalArgumentException("Input array is null or has invalid size.");
         }
-    }
 
+        for (int num : nums) {
+            if (num == 0)
+                throw new IllegalArgumentException("Input array contains 0, which is incorrect.");
+        }
+    }
 }
