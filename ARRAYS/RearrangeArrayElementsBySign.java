@@ -11,7 +11,7 @@
 
 import java.util.Arrays;
 
-public class RearrangeArayElementsBySign {
+public class RearrangeArrayElementsBySign {
     public static void main(String[] args) {
         int[] numsArr = new int[] { -1, 1 };
         System.out.println("Original array is: " + Arrays.toString(numsArr));
@@ -51,7 +51,7 @@ public class RearrangeArayElementsBySign {
 
     // APPROACH: Create a new array for storing just positive integers.
     // Create another array for storing just negative integers.
-    // Traverse both arrays and put each element froom both arrays into the original
+    // Traverse both arrays and put each element from both arrays into the original
     // array
 
     // Time Complexity: O(3n) = O(n)

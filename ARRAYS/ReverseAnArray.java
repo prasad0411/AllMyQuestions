@@ -24,6 +24,7 @@ public class ReverseAnArray {
     // Space Complexity:O(n).
     // Need to create a new array of the size of original array
 
+    @SuppressWarnings("unused")
     private static int[] bruteForce(int[] arr) {
         System.out.print("\nBrute Force: Reversed array=> ");
         int[] reversedArray = new int[arr.length];
@@ -34,25 +35,12 @@ public class ReverseAnArray {
         }
         return reversedArray;
     }
-
     // Time Complexity: O(n).
     // We are traversing through all elements from original array
     // Space Complexity:O(1).
     // No need to create a new data structure. Just use a temp varaible and use 2
     // pointers
 
-    private static void optimalApproach(int[] inputArray) {
-        System.out.print("\nOptimal Approach: Reversed array => ");
-        int left = 0, temp = 0;
-        int right = inputArray.length - 1;
-        while (left < right) {
-            temp = inputArray[left];
-            inputArray[left] = inputArray[right];
-            inputArray[right] = temp;
-            left++;
-            right--;
-        }
-    }
 
     public static int[] reversedArrayInPlace(int numbers[]) {
         // 1, 2, 3

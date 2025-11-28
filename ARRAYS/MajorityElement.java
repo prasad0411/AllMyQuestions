@@ -26,6 +26,7 @@ public class MajorityElement {
     // Traversing through the whole array and checking for maximumElement based on counts
     // Space Complexity: O(1)
     // No new data structure
+    @SuppressWarnings("unused")
     private static int optimalApproach(int[] inputArray) {
         validate(inputArray);
 
@@ -69,6 +70,7 @@ public class MajorityElement {
     // Time Complexity: O(n log n).
     // Space Complexity: O(1).
     // In place modification.
+    @SuppressWarnings("unused")
     private static int bruteForce(int[] inputArray) {
         validate(inputArray);
 
