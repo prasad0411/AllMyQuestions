@@ -1,35 +1,51 @@
 package hashset;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class HappyNumber {
     public static void main(String[] args) {
-        int inputNumber = 1;
-        if (inputNumber < 1) {
-            System.exit(1);
+        int inputNumber = 19;
+
+        System.out.println("Original number is: " + inputNumber);
+        if (bruteForce(inputNumber)) {
+            System.out.println(inputNumber + " is a happy number.");
         }
-        boolean ans = bruteForce(inputNumber);
-        System.out.println(ans);
     }
 
     // TC: O(log^2 n). Outer loop traveses through each number
     // SC: O(log n). Due to HashSet
     public static boolean bruteForce(int inputNumber) {
-        HashSet<Integer> usedNumbers = new HashSet<>();
-
-        while (inputNumber != 1 && !usedNumbers.contains(inputNumber)) {
-            usedNumbers.add(inputNumber);
-            int sumOfSquares = 0;
-
-            // INNER LOOP IS TO SEPARATE DIGITS AND DO SUM
-            while (inputNumber != 0) {
-                int lastDigit = inputNumber % 10;
-                sumOfSquares += lastDigit * lastDigit;
-                inputNumber = inputNumber / 10;
-            }
-            inputNumber = sumOfSquares;
+        System.out.println("Brute force approach: ");
+        if (inputNumber <= 0) {
+            throw new IllegalArgumentException("Invalid input number.");
         }
-        return inputNumber == 1;
+
+        if (inputNumber == 1)
+            return true;
+
+        int sum = 0;
+        int lastNum = 0;
+        Set<Integer> uniqueSums = new HashSet<>();
+
+        // input: 19
+        // lastNum: 9
+        // sum: 0
+        //
+        while (inputNumber != 1 || !uniqueSums.contains(sum)) {
+            lastNum = inputNumber % 10;
+            sum += lastNum * lastNum;
+            uniqueSums.add(sum);
+            inputNumber /= 10;
+
+            if (inputNumber / 10 == 0) {
+                inputNumber = 0;
+            }
+
+            if (sum == 1)
+                return true;
+        }
+        return false;
 
     }
 }

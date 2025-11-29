@@ -12,6 +12,7 @@ public class FrequencyOfArrayElements {
         System.out.println(ans[0] + " " + ans[1]);
     }
 
+    @SuppressWarnings("unused")
     private static HashMap<Integer, Integer> countryFrequency(int numbers[]) {
         HashMap<Integer, Integer> hashMap = new HashMap<>();
 

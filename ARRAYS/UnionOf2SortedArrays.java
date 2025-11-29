@@ -38,6 +38,7 @@ public class UnionOf2SortedArrays {
     // Traversing array 1 and array 2, with m and n elements respectively
     // Space Complexity: O(m+n).
     // A new HashSet of size (m+n) is created.
+    @SuppressWarnings("unused")
     private static Set<Integer> bruteForce(int[] arr1, int[] arr2) {
         // BASE CASE: Arrays are null
         if (arr1 == null || arr2 == null)
