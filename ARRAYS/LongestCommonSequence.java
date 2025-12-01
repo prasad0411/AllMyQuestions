@@ -20,6 +20,15 @@ public class LongestCommonSequence {
         System.out.print("Longest common sequence is: " + optimalApproach(originalArr));
     }
 
+    // APPROACH: Use a hashSet and store all elements in it.
+    // Use a loop to traverse store all elements into the Set.
+    // Check if an element' -1 value exists in the set, if not, it is the starting
+    // position of the longest sequence.
+    // Then check for existence of element' +1 value in set, and increment counter
+    // Compare counter and maxCounter at the end
+
+    // Time Complexity: O(n). Traverse the array to store into the Set
+    // Space Complexity: O(n) HashSet
     private static int optimalApproach(int[] originalArr) {
         System.out.println("Optimal Approach: ");
 
@@ -34,7 +43,7 @@ public class LongestCommonSequence {
         }
 
         int maxCount = 1;
-        for (int num : originalArr) {
+        for (int num : uniqueElementsSet) {
             if (!uniqueElementsSet.contains(num - 1)) {
                 int currentHead = num;
                 int count = 1;
@@ -47,7 +56,7 @@ public class LongestCommonSequence {
                 maxCount = Math.max(maxCount, count);
             }
         }
-        
+
         return maxCount;
     }
 
