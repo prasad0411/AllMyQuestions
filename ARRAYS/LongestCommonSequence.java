@@ -67,6 +67,7 @@ public class LongestCommonSequence {
 
     // Time Complexity: O(n log n). Sort the array, and then traverse it
     // Space Complexity: O(1) No new data structure
+    @SuppressWarnings("unused")
     private static int bruteForce(int[] nums) {
         System.out.println("Brute force approach: ");
         // BASE CASE
