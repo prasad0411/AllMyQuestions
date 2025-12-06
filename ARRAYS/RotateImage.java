@@ -1,28 +1,37 @@
 public class RotateImage {
 
+    // WE HAVE AN N*N MATRIX, AND WE NEED TO ROTATE IT CLOCKWISE BY 90 DEGREES.
+
+    // INPUT: [[1,2,3],[4,5,6],[7,8,9]]
+    // OUTPUT: [[7,4,1],[8,5,2],[9,6,3]]
+
+    // INPUT: [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+    // OUTPUT: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+
     public static void main(String[] args) {
-        int[][] originalMatrix = new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+        int[][] originalMatrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+        int matrixSize = originalMatrix.length;
 
         System.out.println("Original 2D array is: ");
-        for (int i = 0; i < originalMatrix.length; i++) {
-            for (int j = 0; j < originalMatrix[0].length; j++) {
+        for (int i = 0; i < matrixSize; i++) {
+            for (int j = 0; j < matrixSize; j++) {
                 System.out.print(originalMatrix[i][j] + " ");
             }
             System.out.println("");
         }
 
-        rotate(originalMatrix);
+        optimalApproach(originalMatrix);
 
-        System.out.println("Modified 2D array is: ");
-        for (int i = 0; i < originalMatrix.length; i++) {
-            for (int j = 0; j < originalMatrix[0].length; j++) {
+        System.out.println("\nRotated 2D array by 90 degrees is: ");
+        for (int i = 0; i < matrixSize; i++) {
+            for (int j = 0; j < matrixSize; j++) {
                 System.out.print(originalMatrix[i][j] + " ");
             }
             System.out.println("");
         }
     }
 
-    private static void rotate(int[][] matrix) {
+    private static void optimalApproach(int[][] matrix) {
         if (matrix == null || matrix.length == 0) {
             throw new IllegalArgumentException("Matrix is null or has incorrect size.");
         }
@@ -31,9 +40,20 @@ public class RotateImage {
         reverse(matrix);
     }
 
+    // Approach: We initially transpose the matrix so that we swap the columns with
+    // rows
+    // Post transposing, we reverse each row
+
+    // TC: O(m *n)
+    // Traverse all rows and columns, and use a temp variable to swap all positions
+    // SC: O(1).
+    // No new data structure
+
     private static void transpose(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = i + 1; j < matrix[0].length; j++) {
+        int matrixSize = matrix.length;
+
+        for (int i = 0; i < matrixSize; i++) {
+            for (int j = i + 1; j < matrixSize; j++) {
                 int temp = matrix[i][j];
                 matrix[i][j] = matrix[j][i];
                 matrix[j][i] = temp;
@@ -42,11 +62,13 @@ public class RotateImage {
     }
 
     private static void reverse(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length / 2; j++) {
+        int matrixSize = matrix.length;
+
+        for (int i = 0; i < matrixSize; i++) {
+            for (int j = 0; j < matrixSize / 2; j++) {
                 int temp = matrix[i][j];
-                matrix[i][j] = matrix[i][matrix.length - 1 - j];
-                matrix[i][matrix.length - 1 - j] = temp;
+                matrix[i][j] = matrix[i][matrixSize - 1 - j];
+                matrix[i][matrixSize - 1 - j] = temp;
             }
         }
     }
