@@ -31,6 +31,16 @@ public class RotateImage {
         }
     }
 
+    // Approach: We initially transpose the matrix so that we swap the columns with
+    // rows. Use a temp variable to transpose all positions
+    // We start j as i+1 so we can skip swapping diagonals and pairs which were
+    // already swapped
+    // Post transposing, we reverse each row to achieve the 90 degrees condition
+
+    // TC: O(m *n)
+    // Traverse all rows and columns, and use a temp variable to swap all positions
+    // SC: O(1).
+    // No new data structure
     private static void optimalApproach(int[][] matrix) {
         if (matrix == null || matrix.length == 0) {
             throw new IllegalArgumentException("Matrix is null or has incorrect size.");
@@ -39,15 +49,6 @@ public class RotateImage {
         transpose(matrix);
         reverse(matrix);
     }
-
-    // Approach: We initially transpose the matrix so that we swap the columns with
-    // rows
-    // Post transposing, we reverse each row
-
-    // TC: O(m *n)
-    // Traverse all rows and columns, and use a temp variable to swap all positions
-    // SC: O(1).
-    // No new data structure
 
     private static void transpose(int[][] matrix) {
         int matrixSize = matrix.length;
