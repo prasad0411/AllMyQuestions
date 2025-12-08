@@ -1,4 +1,4 @@
-package MISCLENNAEOUS;
+package misclenneous;
 public class PerfectNumber {
     public static void main(String[] args) {
         System.out.println(mainFunction(2));

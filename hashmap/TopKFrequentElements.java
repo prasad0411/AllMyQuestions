@@ -32,6 +32,7 @@ public class TopKFrequentElements {
             k = hashMap.size();
         }
 
+        @SuppressWarnings("unused")
         int arr[][] = new int[][] {};
 
         List<Map.Entry<Integer, Integer>> list = new ArrayList<>(hashMap.entrySet());

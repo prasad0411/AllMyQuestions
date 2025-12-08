@@ -1,4 +1,4 @@
-package MISCLENNAEOUS;
+package misclenneous;
 public class ArmstrongNumber {
     public static void main(String[] args) {
 

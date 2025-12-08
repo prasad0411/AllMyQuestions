@@ -1,4 +1,4 @@
-package MISCLENNAEOUS;
+package misclenneous;
 
 import java.util.Arrays;
 

@@ -1,7 +1,9 @@
-package MISCLENNAEOUS;
+package misclenneous;
+
 import java.util.Scanner;
 
 public class FibonnaciSeries {
+    @SuppressWarnings("ConvertToTryWithResources")
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -14,7 +16,7 @@ public class FibonnaciSeries {
 
         for (int i = 2; i < lastTerm; i++) {
             sum = first_Term + second_Term;
-            System.out.print(" "+ sum );
+            System.out.print(" " + sum);
             first_Term = second_Term;
             second_Term = sum;
         }
