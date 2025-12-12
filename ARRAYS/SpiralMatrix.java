@@ -21,7 +21,7 @@ public class SpiralMatrix {
             }
             System.out.println(" ");
         }
-
+ 
         List<Integer> resultList = spiralOrder(matrix);
         System.out.println("\nSpiralled Matrix is: " + resultList);
     }
