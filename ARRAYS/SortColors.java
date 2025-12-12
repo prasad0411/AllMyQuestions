@@ -22,9 +22,10 @@ public class SortColors {
     }
 
     // APPROACH: Use a hashmap to store count of 0,1,2. Based on these counts or null values, in the array, put 0,1,2
-    // Time Complexity: O(n).
+    
+    // TC: O(n).
     // Traversing through the whole array and putting counts of 0,1,2 into the Map
-    // Space Complexity: O(n).
+    // SC: O(n).
     // Creating hashMap
     private static int[] bruteForce(int[] inputArray) {
         //BASE CASE
