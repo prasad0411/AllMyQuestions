@@ -3,7 +3,7 @@ import java.util.Arrays;
 // WE HAVE A SORTED ARRAY AND A TARGET ELEMENT  
 // USE BINARY SEARCH TO FIND THE INDEX OF THE TARGET ELEMENT 
 // RETURN -1 IF ELEMENT IS NOT FOUND
-
+ 
 // Input: arr = [5, 15, 25, 35, 45, 55, 65], target = 35  
 // Output: 3  
 
