@@ -21,20 +21,25 @@ public class SpiralMatrix {
             }
             System.out.println(" ");
         }
- 
+
         List<Integer> resultList = spiralOrder(matrix);
         System.out.println("\nSpiralled Matrix is: " + resultList);
     }
 
-    // APPROACH: Use 4 pointers to track 4 corners of the matrix, and accordingly
-    // iterate
+    // APPROACH: Use 4 boundary pointers (rowBegin, rowEnd, colBegin, colEnd)
+    // to traverse the matrix layer by layer in spiral order, shrinking boundaries
+    // after each direction.
 
     // TC: O(m * n).
     // Traversing the entire matrix through all the 4 pointers
-    // SC: O(1).
-    // No new data structure. Only created a List as needed as per the method
-    // signature.
+    // SC: O(1) auxiliary space (output List not counted)
     public static List<Integer> spiralOrder(int[][] matrix) {
+        // BASE CASE
+        if(matrix==null || matrix.length==0)
+        {
+            throw new IllegalArgumentException("Invalid matrix size.");
+        }
+        
         int colBegin = 0;
         int colEnd = matrix[0].length - 1;
         int rowBegin = 0;
