@@ -2,6 +2,13 @@ package searching;
 
 import java.util.Arrays;
 
+// AN ARRAY IS GIVEN. 
+
+// Input: [[1,2,3],[4,5,6],[7,8,9]]  
+// Output: [1,2,3,6,9,8,7,4,5]
+
+// Input: [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+// Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 public class SearchInsertPosition {
     public static void main(String args[]) {
         int[] originalArray = { 1, 3, 5, 6 };
