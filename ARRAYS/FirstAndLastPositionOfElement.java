@@ -20,7 +20,7 @@ public class FirstAndLastPositionOfElement {
         int startindex = -1, lastIndex = -1;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == target) {
-                if (startindex == -1) {
+                if (startindex == -1) { 
                     startindex = i;
                 }
                 lastIndex = i;
