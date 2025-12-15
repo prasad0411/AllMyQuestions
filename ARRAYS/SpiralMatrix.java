@@ -34,13 +34,13 @@ public class SpiralMatrix {
     // Traversing the entire matrix through all the 4 pointers
     // SC: O(1) auxiliary space (output List not counted)
     public static List<Integer> spiralOrder(int[][] matrix) {
+        System.out.println("Optimal Approach => ");
 
         // BASE CASE
-        if(matrix==null || matrix.length==0)
-        {
+        if (matrix == null || matrix.length == 0) {
             throw new IllegalArgumentException("Invalid matrix size.");
         }
-        
+
         int colBegin = 0;
         int colEnd = matrix[0].length - 1;
         int rowBegin = 0;
@@ -77,7 +77,7 @@ public class SpiralMatrix {
                 colBegin++;
             }
         }
-        
+
         return resultList;
     }
 }

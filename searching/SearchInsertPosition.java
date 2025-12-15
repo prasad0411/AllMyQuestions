@@ -31,6 +31,8 @@ public class SearchInsertPosition {
     // Constanly dividing the array into 2 halves
     // SC: O(1). No new datastructure created.
     public static int optimalApproach(int[] nums, int target) {
+        System.out.println("Optimal Approach => ");
+
         // BASE CASE
         if (nums == null || nums.length == 0) {
             throw new IllegalArgumentException("Array is of invalid size.");

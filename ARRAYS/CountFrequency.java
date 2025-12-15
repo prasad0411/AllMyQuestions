@@ -24,6 +24,8 @@ public class CountFrequency {
     // Need to traverse through all elements
     // SC: O(k) for all unique elements in the Map
     private static Map<Integer, Integer> countFrequency(int[] inputArray) {
+        System.out.println("Optimal Approach => ");
+
         // EDGE CASE: Handle null or empty array
         if (inputArray == null || inputArray.length < 1) {
             return new HashMap<>();
