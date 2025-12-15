@@ -34,6 +34,7 @@ public class SpiralMatrix {
     // Traversing the entire matrix through all the 4 pointers
     // SC: O(1) auxiliary space (output List not counted)
     public static List<Integer> spiralOrder(int[][] matrix) {
+
         // BASE CASE
         if(matrix==null || matrix.length==0)
         {
@@ -76,6 +77,7 @@ public class SpiralMatrix {
                 colBegin++;
             }
         }
+        
         return resultList;
     }
 }

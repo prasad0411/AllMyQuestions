@@ -29,7 +29,7 @@ public class SearchInsertPosition {
 
     // TC: O(log (n)).
     // Constanly dividing the array into 2 halves
-    // O(1)
+    // SC: O(1). No new datastructure created.
     public static int optimalApproach(int[] nums, int target) {
         // BASE CASE
         if (nums == null || nums.length == 0) {
