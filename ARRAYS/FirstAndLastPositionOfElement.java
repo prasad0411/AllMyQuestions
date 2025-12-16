@@ -3,13 +3,13 @@ import java.util.Arrays;
 // RETURN THE STARTING AND ENDING INDICES OF THE TARGET ELEMENT FROM SORTED ARRAY.
 // IF THAT ELEMENT IS NOT PRESENT, RETURN -1 -1.
 
-// Input: [5,7,7,8,8,10], 8
+// Input: [5,7,7,8,8,10], target = 8
 // Output: [3, 4]
 
-// Input: [5,7,7,8,8,10], 6
+// Input: [5,7,7,8,8,10], target = 6
 // Output: [-1, -1]
 
-// Input: [], 0
+// Input: [], target = 0
 // Output: [-1,-1]
 
 public class FirstAndLastPositionOfElement {
