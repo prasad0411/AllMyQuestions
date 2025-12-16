@@ -17,9 +17,11 @@ public class FirstAndLastPositionOfElement {
         int originalArray[] = { 5, 7, 7, 8, 8, 10 };
         int target = 8;
         System.out.println("Array is: " + Arrays.toString(originalArray));
-        // System.out.println("Indices are:" + Arrays.toString(bruteForce(originalArray,
-        // target)));
-        System.out.println("Indices are:" + Arrays.toString(optimalApproach(originalArray, target)));
+        System.out.println("Target element is: " + target);
+        System.out.println("Indices are: " + Arrays.toString(bruteForce(originalArray,
+                target)));
+        // System.out.println("Indices are: " +
+        // Arrays.toString(optimalApproach(originalArray, target)));
     }
 
     // APPROACH: Use Binary search to find the first and last positions.
@@ -30,21 +32,23 @@ public class FirstAndLastPositionOfElement {
     public static int[] optimalApproach(int[] nums, int target) {
         System.out.println("Optimal Approach => ");
 
+        int[] ansArray = { -1, -1 };
+
         // EDGE CASE: EXIT IF ARRAY IS NULL OR HAS NO ELEMENTS
         if (nums == null || nums.length == 0) {
-            return new int[] { -1, -1 };
+            return ansArray;
         }
 
-        int startIndex = firstIndex(nums, target);
+        ansArray[0] = firstIndex(nums, target);
 
         // EDGE CASE: IF FIRST POSITION DOES NOT EXIST, LAST POSITION WONT EXIST AS WELL
-        if (startIndex == -1) {
+        if (ansArray[0] == -1) {
             return new int[] { -1, -1 };
         }
 
-        int endIndex = lastIndex(nums, target);
+        ansArray[1] = lastIndex(nums, target);
 
-        return new int[] { startIndex, endIndex };
+        return ansArray;
     }
 
     // While checking for first index, when we find the target, we
@@ -107,7 +111,7 @@ public class FirstAndLastPositionOfElement {
     public static int[] bruteForce(int[] nums, int target) {
         System.out.println("Brute Force => ");
 
-        // BASE CASE
+        // EDGE CASE: EXIT IF ARRAY IS NULL OR HAS NO ELEMENTS
         if (nums == null || nums.length == 0) {
             return new int[] { -1, -1 };
         }
