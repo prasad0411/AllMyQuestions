@@ -19,7 +19,7 @@ public class SearchInSortedArray {
         int target = 3;
         System.out.println("Modified array with K rotations is: " + Arrays.toString(modifiedArray));
         System.out.println("Target element is: " + target);
-        System.out.println("Target element is present at index at: " + bruteForce(modifiedArray, target));
+        System.out.println("Target element is present at index at: " + optimalApproach(modifiedArray, target));
     }
 
     // APPROACH: Use modified binary search to find target in rotated array.
@@ -29,7 +29,7 @@ public class SearchInSortedArray {
 
     // TC: O(log n) - Binary search eliminates half the array each iteration
     // SC: O(1). No new data structure.
-    public static int bruteForce(int[] nums, int target) {
+    public static int optimalApproach(int[] nums, int target) {
         System.out.println("Brute Force =>");
 
         // EDGE CASE: EXIT IF ARRAY IS NULL OR HAS NO ELEMENTS
