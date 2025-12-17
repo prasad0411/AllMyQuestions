@@ -2,8 +2,7 @@ import java.util.Arrays;
 
 // IN THE METHOD, THE ARRAY HAS ALREADY BEEN ROTATED K TIMES (K IS UNKNOWN).
 // DUPLICATES EXIST
-// NEED TO FIND THE INDEX OF THE TARGET ELEMENT FROM THAT ROTATED ARRAY.
-// IF THE TARGET ELEMENT IS NOT PRESENT, RETURN -1
+// RETURN TRUE IF THE TARGET ELEMENT EXISTS, OTHERWISE FALSE
 
 // Input: [4,5,6,7,0,1,2], target= 0
 // Output: true
@@ -20,7 +19,7 @@ public class SearchInSortedArray2 {
         int target = 1;
         System.out.println("Modified array with K rotations is: " + Arrays.toString(modifiedArray));
         System.out.println("Target element is: " + target);
-        System.out.println("Target element is present at index at: " + bruteForceApproach(modifiedArray, target));
+        System.out.println("Target element present? " + bruteForceApproach(modifiedArray, target));
     }
 
     // APPROACH: Traverse entire array to check if the element exists or no
