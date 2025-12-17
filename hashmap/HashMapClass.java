@@ -4,7 +4,7 @@ import java.util.*;
 
 public class HashMapClass {
     public static void main(String[] args) {
-        HashMap<Integer, String> map = new HashMap<Integer, String>();
+        HashMap<Integer, String> map = new HashMap<>();
 
         System.out.println(map.size());
 
