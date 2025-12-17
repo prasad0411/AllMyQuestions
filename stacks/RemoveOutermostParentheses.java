@@ -2,30 +2,41 @@ package stacks;
 
 public class RemoveOutermostParentheses {
     public static void main(String[] args) {
-        String s = "(()())(())";
-        System.out.println("Original string is: " + s);
-        System.out.println("String after removing the outer parantheses is: " + removeOuterParentheses(s));
+        String originalString = "()";
+        System.out.println("Original string is: " + originalString);
+        System.out.println("String after removing the outer parantheses on the decomposed string is: "
+                + removeOuterParentheses(originalString));
     }
 
     public static String removeOuterParentheses(String s) {
 
         // EDGE CASE: IF STRING IS NULL OR EMPTY
         if (s == null || s.length() == 0) {
-            throw new IllegalArgumentException("String is null or has an invalid size.");
+            return "";
         }
 
-        char[] characters = new char[s.length()];
-        int counter = 0;
-        int index = 0;
+        StringBuilder ansString = new StringBuilder();
+        int depth = 0;
 
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(')
-                counter++;
-            else if (counter != 0)
-                characters[index++] = s.charAt(i);
-            else
-                counter--;
+        for (char ch : s.toCharArray()) {
+            if (ch == '(') {
+                if (depth > 0) {
+                    ansString.append(ch);
+                }
+                depth++;
+            }
+
+            // String originalString = "(()())(())";
+            // ans: ()
+            // depth: 1
+            else {
+                depth--;
+                if (depth > 0) {
+                    ansString.append(ch);
+                }
+            }
         }
-        return "";
+
+        return ansString.toString();
     }
 }
