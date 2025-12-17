@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class FindSingleNumber {
     public static void main(String[] args) {
-        int inputArray[] = new int[] { 2, 2, 1 };
+        int inputArray[] = { 2, 2, 1 };
         System.out.println("Original array is :" + Arrays.toString(inputArray));
         System.out.println("Single element is :" + betterThanBruteForce(inputArray));
     }
@@ -28,8 +28,10 @@ public class FindSingleNumber {
     // once
     // SC: O(1). No new data structure is created.
     public static int bruteForce(int[] array) {
-        // Base case
-        if (array == null || array.length < 1) {
+        System.out.println("Optimal Approach => ");
+
+        // EDGE CASE: array is null or is empty
+        if (array == null || array.length == 0) {
             throw new IllegalArgumentException("Array is null or has an invalid size.");
         }
 

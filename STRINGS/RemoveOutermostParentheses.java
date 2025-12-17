@@ -1,15 +1,17 @@
 package strings;
 
-// FROM THE VALID PARANTHESES STRING, DECOMPOSE IT FIRST AND THEN REMOVE THE OUTERMOST PARANTHESES
+// FROM THE VALID PARANTHESES STRING, DECOMPOSE IT FIRST, AND THEN REMOVE THE OUTERMOST PARANTHESES
+// RETURN THE RESULT OF THE ABOVE OPERATION
 
 // Input: string: "()"
-// Output: 
+// Output: ""
 
 // Input: string: "(()())(())"
 // Output: "()()()"
 
 // Input: string: "(()())(())(()(()))"
 // Output: "()()()()(())"
+
 public class RemoveOutermostParentheses {
     public static void main(String[] args) {
         String originalString = "()";
@@ -18,12 +20,12 @@ public class RemoveOutermostParentheses {
                 + removeOuterParentheses(originalString));
     }
 
-    // APPROACH: Sort the elements, and return the answer element when
-    // arr[i]!=arr[i+1]
+    // APPROACH: Use a depth variable to check if we are at which level. If we are
+    // at level 0, then we skip appending the parantheses to the answer string.
+    // In depth is more than 0, we append it
 
-    // TC: O(n log n). Sort the array and traverse through all elements
-    // once
-    // SC: O(1). No new data structure is created.
+    // TC: O(n). Traverse the entire string once
+    // SC: O(1). Space for StringBuilder (worst case: n-2 characters).
     public static String removeOuterParentheses(String s) {
 
         // EDGE CASE: IF STRING IS NULL OR EMPTY
@@ -31,6 +33,7 @@ public class RemoveOutermostParentheses {
             return "";
         }
 
+        // StringBuilder because we will be appending new characters dynamically
         StringBuilder ansString = new StringBuilder();
         int depth = 0;
 
@@ -40,12 +43,7 @@ public class RemoveOutermostParentheses {
                     ansString.append(ch);
                 }
                 depth++;
-            }
-
-            // String originalString = "(()())(())";
-            // ans: ()
-            // depth: 1
-            else {
+            } else {
                 depth--;
                 if (depth > 0) {
                     ansString.append(ch);

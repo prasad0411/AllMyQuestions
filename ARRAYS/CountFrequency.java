@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,16 +17,17 @@ import java.util.Map;
 
 public class CountFrequency {
     public static void main(String[] args) {
-        int arr[] = new int[] { 0, 0, 2 };
-        System.out.println("Frequency of elements is: " + countFrequency(arr));
+        int arr[] = {};
+        System.out.println("Original array is: " + Arrays.toString(arr));
+        System.out.println("Frequency of elements is: " + optimalApproach(arr));
     }
 
     // Approach: Use a HashMap to store the frequency of the elements
     // TC: O(n)
     // Need to traverse through all elements
     // SC: O(k) for all unique elements in the Map
-    private static Map<Integer, Integer> countFrequency(int[] inputArray) {
-        System.out.println("Optimal Approach => ");
+    private static Map<Integer, Integer> optimalApproach(int[] inputArray) {
+        System.out.println("\nOptimal Approach => ");
 
         // EDGE CASE: Handle null or empty array
         if (inputArray == null || inputArray.length < 1) {
