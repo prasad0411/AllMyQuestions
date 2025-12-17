@@ -24,9 +24,9 @@ public class FindSingleNumber {
     // APPROACH: Sort the elements, and return the answer element when
     // arr[i]!=arr[i+1]
 
-    // Time Complexity: O(n log n). Sort the array and traverse through all elements
+    // TC: O(n log n). Sort the array and traverse through all elements
     // once
-    // Space Complexity: O(1). No new data structure is created.
+    // SC: O(1). No new data structure is created.
     public static int bruteForce(int[] array) {
         // Base case
         if (array == null || array.length < 1) {

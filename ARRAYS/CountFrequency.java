@@ -20,6 +20,7 @@ public class CountFrequency {
         System.out.println("Frequency of elements is: " + countFrequency(arr));
     }
 
+    // Approach: Use a HashMap to store the frequency of the elements
     // TC: O(n)
     // Need to traverse through all elements
     // SC: O(k) for all unique elements in the Map

@@ -1,5 +1,15 @@
-package stacks;
+package strings;
 
+// FROM THE VALID PARANTHESES STRING, DECOMPOSE IT FIRST AND THEN REMOVE THE OUTERMOST PARANTHESES
+
+// Input: string: "()"
+// Output: 
+
+// Input: string: "(()())(())"
+// Output: "()()()"
+
+// Input: string: "(()())(())(()(()))"
+// Output: "()()()()(())"
 public class RemoveOutermostParentheses {
     public static void main(String[] args) {
         String originalString = "()";
@@ -8,6 +18,12 @@ public class RemoveOutermostParentheses {
                 + removeOuterParentheses(originalString));
     }
 
+    // APPROACH: Sort the elements, and return the answer element when
+    // arr[i]!=arr[i+1]
+
+    // TC: O(n log n). Sort the array and traverse through all elements
+    // once
+    // SC: O(1). No new data structure is created.
     public static String removeOuterParentheses(String s) {
 
         // EDGE CASE: IF STRING IS NULL OR EMPTY
