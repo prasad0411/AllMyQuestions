@@ -13,7 +13,7 @@ import java.util.Arrays;
 // Input: [1], target = 0
 // Output: -1
 
-public class SearchInSortedArray {
+public class SearchInSortedArray1 {
     public static void main(String[] args) {
         int[] modifiedArray = { 5, 1, 3 };
         int target = 3;
