@@ -13,9 +13,9 @@ import java.util.Arrays;
 
 public class FindMinimumInRotatedSortedArray {
     public static void main(String[] args) {
-        int[] rotatedArray = { 7, 0, 1, 2, 4, 5, 6 };
+        int[] rotatedArray = { 1, 2, 7 };
         System.out.println("Original sorted array is: " + Arrays.toString(rotatedArray));
-        System.err.println("Minimum element from the rotated sorted array is: " + findMin(rotatedArray));
+        System.out.println("Minimum element from the rotated sorted array is: " + findMin(rotatedArray));
     }
 
     // APPROACH: Use modified binary search to find smallest element
@@ -38,6 +38,11 @@ public class FindMinimumInRotatedSortedArray {
 
         while (lowPointer <= highPointer) {
             int middlePointer = lowPointer + (highPointer - lowPointer) / 2;
+
+            // EDGE CASE: If current search space is sorted, return minimum immediately
+            if (nums[lowPointer] <= nums[highPointer]) {
+                return Math.min(nums[lowPointer], minNumber);
+            }
 
             // If left half is sorted, just get the minimum element from there and check the
             // other unsorted half
