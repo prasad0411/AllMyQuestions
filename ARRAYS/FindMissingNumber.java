@@ -21,18 +21,18 @@ public class FindMissingNumber {
     // APPROACH: Use the maths formula to calculate the sum of a sequence from 1-N
     // (N* (N + 1) )/2
     // Subtract the actual sum of all elements from the expected sum
-    
+
     // TC: O(n) - Linearly traverse the array and every element
     // SC: O(1) - No new data structure
     public static int missingNumber(int[] nums) {
         int len = nums.length;
-        int totalSum = (len * (len + 1)) / 2;
-        int arraySum = 0;
+        long totalSum = (len * (len + 1)) / 2;
+        long arraySum = 0;
 
         for (int num : nums) {
             arraySum += num;
         }
 
-        return totalSum - arraySum;
+        return (int) (totalSum - arraySum);
     }
 }
