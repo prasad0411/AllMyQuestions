@@ -18,12 +18,12 @@ public class FindMissingNumber {
         System.out.println("Missing number is: " + missingNumber(array));
     }
 
-    // APPROACH: Traverse both the strings simultaneously, and put current character
-    // of string 2 for string 1, and do the vice versa.
-    // Do this till all characters of a string have been processed
-
-    // TC: O(n) - Linear search across both the strings of same length
-    // SC: O(n) - Creating 2 hash maps to store the characters mapping.
+    // APPROACH: Use the maths formula to calculate the sum of a sequence from 1-N
+    // (N* (N + 1) )/2
+    // Subtract the actual sum of all elements from the expected sum
+    
+    // TC: O(n) - Linearly traverse the array and every element
+    // SC: O(1) - No new data structure
     public static int missingNumber(int[] nums) {
         int len = nums.length;
         int totalSum = (len * (len + 1)) / 2;
