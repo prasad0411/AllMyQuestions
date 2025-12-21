@@ -13,22 +13,23 @@ import java.util.Map;
 
 // Input: [2,0,1]
 // Output: [0,1,2]
+
 public class SortColors {
 
     public static void main(String[] args) {
-        int[] inputArray = new int[]{2, 0, 1};
+        int[] inputArray = new int[] { 2, 0, 1 };
         System.out.println("Original array is: " + Arrays.toString(inputArray));
         System.out.println(Arrays.toString(bruteForce(inputArray)));
     }
 
-    // APPROACH: Use a hashmap to store count of 0,1,2. Based on these counts or null values, in the array, put 0,1,2
-    
-    // TC: O(n).
-    // Traversing through the whole array and putting counts of 0,1,2 into the Map
-    // SC: O(n).
-    // Creating hashMap
+    // APPROACH: Use a hashmap to store count of 0,1,2. Based on these counts or
+    // null values, in the array, put 0,1,2
+
+    // TC: O(n). Traversing through the whole array and putting counts of 0,1,2 into
+    // the Map
+    // SC: O(n). Creating hashMap
     private static int[] bruteForce(int[] inputArray) {
-        //BASE CASE
+        // BASE CASE
         if (inputArray == null || inputArray.length == 0) {
             throw new IllegalArgumentException("Array is null or has an invalid size.");
         }

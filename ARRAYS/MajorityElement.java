@@ -1,17 +1,18 @@
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 // IN AN UNSORTED ARRAY, FIND THE ELEMENT THAT OCCURS MORE THAN N/2 TIMES
+
 // Input: [3,2,3]  
 // Output: 3
+
 // Input: [2,2,1,1,1,2,2]
 // Output:2
 public class MajorityElement {
 
     public static void main(String[] args) {
-        int[] inputArray = new int[]{2, 1};
+        int[] inputArray = new int[] { 2, 1 };
         System.out.println("Original array is: " + Arrays.toString(inputArray));
         // System.out.println("Majority element is: " + bruteForce(inputArray));
         System.out.println("Majority element is: " + betterThanBruteForce(inputArray));
@@ -20,12 +21,15 @@ public class MajorityElement {
 
     // APPROACH: Boyer-Moore Voting Algorithm
     // Declare candidateElement as arr[0] and count as 1.
-    // Use loop to check if candidateElement == currentElement, if yes, then count++, else count--
+    // Use loop to check if candidateElement == currentElement, if yes, then
+    // count++, else count--
     // If count becomes 0, then make current element as candidateElement.
-    // Time Complexity: O(n)
-    // Traversing through the whole array and checking for maximumElement based on counts
-    // Space Complexity: O(1)
-    // No new data structure
+
+    // TC: O(n)
+    // Traversing through the whole array and checking for maximumElement based on
+    // counts
+
+    // SC: O(1)- No new data structure
     @SuppressWarnings("unused")
     private static int optimalApproach(int[] inputArray) {
         validate(inputArray);
@@ -46,7 +50,8 @@ public class MajorityElement {
     // APPROACH: Use a hashmap to store freq of each element.
     // During insertion, check if element' count exceeds N/2 times
     // Time Complexity: O(n).
-    // Traversing through the whole array and putting freq of each element into the Map
+    // Traversing through the whole array and putting freq of each element into the
+    // Map
     // Space Complexity: O(n).
     // Creating hashMap
     private static int betterThanBruteForce(int[] inputArray) {
@@ -66,7 +71,8 @@ public class MajorityElement {
         throw new AssertionError("No majority element exists");
     }
 
-    // APPROACH: Sort the array so that the middle element is the ans, as it has to occur N/2 times
+    // APPROACH: Sort the array so that the middle element is the ans, as it has to
+    // occur N/2 times
     // Time Complexity: O(n log n).
     // Space Complexity: O(1).
     // In place modification.

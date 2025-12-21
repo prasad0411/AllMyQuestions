@@ -1,12 +1,24 @@
 import java.util.Arrays;
 
+// RETURN THE ELEMENT THAT EXISTS JUST ONCE, WHILE ALL OTHER ELEMENTS EXIST TWICE IN THE SORTED ARRAY
+
+// Input: [1,1,2,3,3,4,4,8,8]  
+// Output: 2
+
+// Input:[3,3,7,7,10,11,11]
+// Output: 10
+
 public class SingleElementInSortedArray {
     public static void main(String[] args) {
-        int[] array = { 1, 1, 2, 2, 3, 3, 4 };
+        int[] array = { 1, 1, 2, 3, 3, 4, 4, 8, 8 };
         System.out.println("Original array is: " + Arrays.toString(array));
         System.out.println("Single element from the sorted array is: " + singleNonDuplicate(array));
     }
 
+    // APPROACH: Use a binary search
+
+    // TC: O(log n). Using binary search
+    // SC: O(1)- No new data structure is used.
     public static int singleNonDuplicate(int[] nums) {
 
         if (nums == null || nums.length == 0)
@@ -29,7 +41,7 @@ public class SingleElementInSortedArray {
 
             // currently you are standing at left half, and the single element is on the
             // right half
-            if ((middlePointer % 2) == 0 && nums[middlePointer] == nums[middlePointer + 1] &&
+            if ((middlePointer % 2) == 0 && nums[middlePointer] == nums[middlePointer + 1] ||
                     ((middlePointer % 2) == 1 && nums[middlePointer] == nums[middlePointer - 1])) {
                 low = middlePointer + 1;
             } else
