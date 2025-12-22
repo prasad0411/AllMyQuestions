@@ -10,14 +10,15 @@ import java.util.Arrays;
 
 public class SingleElementInSortedArray {
     public static void main(String[] args) {
-        int[] array = { 1, 1, 2, 3, 3, 4, 4, 8, 8 };
+        int[] array = { 1, 1, 2, 2, 3, 4, 4 };
         System.out.println("Original array is: " + Arrays.toString(array));
         System.out.println("Single element from the sorted array is: " + singleNonDuplicate(array));
     }
 
-    // APPROACH: Use a binary search
+    // APPROACH: Use a modified binary search. Based on the index of the middle
+    // element and its neighbors, decide which half of the array to search.
 
-    // TC: O(log n). Using binary search
+    // TC: O(log n). At each iteration, half of the elements will be discarded
     // SC: O(1)- No new data structure is used.
     public static int singleNonDuplicate(int[] nums) {
 
@@ -39,8 +40,11 @@ public class SingleElementInSortedArray {
             if (nums[middlePointer] != nums[middlePointer + 1] && nums[middlePointer] != nums[middlePointer - 1])
                 return nums[middlePointer];
 
-            // currently you are standing at left half, and the single element is on the
-            // right half
+            // Pairing rule in a sorted array:
+            // - Even index: element should match index + 1
+            // - Odd index: element should match index - 1
+            // If the rule is satisfied, the single element lies on the right side.
+            // Otherwise, it lies on the left side.
             if ((middlePointer % 2) == 0 && nums[middlePointer] == nums[middlePointer + 1] ||
                     ((middlePointer % 2) == 1 && nums[middlePointer] == nums[middlePointer - 1])) {
                 low = middlePointer + 1;
