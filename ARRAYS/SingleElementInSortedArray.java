@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-// RETURN THE ELEMENT THAT EXISTS JUST ONCE, WHILE ALL OTHER ELEMENTS EXIST TWICE IN THE SORTED ARRAY
+// RETURN THE ELEMENT THAT EXISTS JUST ONCE, WHILE ALL OTHER ELEMENTS EXIST TWICE IN THE ARRAY
 
 // Input: [1,1,2,3,3,4,4,8,8]  
 // Output: 2
@@ -12,7 +12,7 @@ public class SingleElementInSortedArray {
     public static void main(String[] args) {
         int[] array = { 1, 1, 2, 2, 3, 4, 4 };
         System.out.println("Original array is: " + Arrays.toString(array));
-        System.out.println("Single element from the sorted array is: " + singleNonDuplicate(array));
+        System.out.println("Single element from the sorted array is: " + optimalApproach(array));
     }
 
     // APPROACH: Use a modified binary search. Based on the index of the middle
@@ -20,7 +20,8 @@ public class SingleElementInSortedArray {
 
     // TC: O(log n). At each iteration, half of the elements will be discarded
     // SC: O(1)- No new data structure is used.
-    public static int singleNonDuplicate(int[] nums) {
+    public static int optimalApproach(int[] nums) {
+        System.out.println("Optimal Approach ->");
 
         if (nums == null || nums.length == 0)
             throw new IllegalArgumentException("Array is null or has an invalid size.");
