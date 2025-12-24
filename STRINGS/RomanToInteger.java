@@ -15,7 +15,7 @@ public class RomanToInteger {
     }
 
     // APPROACH: Maintain a switch case for mapping roman characters to their
-    // integer values
+    // integer values. Calling a metho requires less space than creating a Map
     // If currentValue of the character is >= than the next character' value, then
     // add it to the result, else subtract from the result
     // Return the result + the value of character at last index in the string
@@ -25,6 +25,7 @@ public class RomanToInteger {
     public static int optimalApproach(String s) {
         System.out.println("Optimal Approach ->");
 
+        // Edge case: String is null or empty
         if (s == null || s.length() == 0) {
             throw new IllegalArgumentException("String is null or empty");
         }
@@ -40,6 +41,7 @@ public class RomanToInteger {
                 ansValue -= currentValue;
         }
 
+        // add last index value, since it was not considered earlier
         return ansValue + valueOfCharacter(s.charAt(s.length() - 1));
     }
 
@@ -71,7 +73,8 @@ public class RomanToInteger {
     // Return the result + the value of character at last index in the string
 
     // TC: O(n) - Linear traversing across the entire string
-    // SC: O(n). Creating a Map to map the Roman characters to integers.
+    // SC: O(1). Creating a Map of 7 values only to map the Roman characters to
+    // integers.
     public static int bruteForceApproach(String s) {
         System.out.println("Brute Force Approach ->");
 
@@ -97,6 +100,7 @@ public class RomanToInteger {
                 ansValue -= currentValue;
         }
 
+        // add last index value, since it was not considered earlier
         return ansValue + hashMap.get(s.charAt(s.length() - 1));
     }
 }
