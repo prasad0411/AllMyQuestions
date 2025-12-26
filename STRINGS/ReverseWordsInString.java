@@ -6,7 +6,7 @@ public class ReverseWordsInString {
     public static void main(String[] args) {
         String s = "the sky";
         System.out.println("Original string is: " + s);
-        System.out.println("Reversed words of the string is: " + reverseWords(s));
+        System.out.println("Reversed words of the string is: " + bruteForce(s));
     }
 
     // APPROACH: First trim the input string, then traverse from the end of the
@@ -19,7 +19,9 @@ public class ReverseWordsInString {
 
     // TC: O(n) - Linear traversing across the entire string
     // SC: O(n). Creating a StringBuilder.
-    public static String reverseWords(String s) {
+    public static String bruteForce(String s) {
+        System.out.println("Brute Force Approach ->");
+
         s = s.trim();
 
         StringBuilder answer = new StringBuilder();
