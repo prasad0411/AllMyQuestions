@@ -18,6 +18,7 @@ public class SquareRoot {
     // TC: O(log n) - Search space becomes half during each iteration
     // SC: O(1). Not creating any new data structure.
     public static int findsquareRoot(int n) {
+        System.out.println("Optimal Approach ->");
 
         if (n < 0)
             throw new IllegalArgumentException("Number is invalid");
