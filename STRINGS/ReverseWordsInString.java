@@ -9,11 +9,11 @@ public class ReverseWordsInString {
         System.out.println("Reversed words of the string is: " + bruteForce(s));
     }
 
-    // APPROACH: First trim the input string, then traverse from the end of the
-    // string.
-    // Maintain a counter to count the non empty characters and process them each
-    // time when hitting a blank space
-    // After processing each character, reduce the lastPosition index
+    // APPROACH: First trim the input string, then traverse from right to left //
+    // Maintain a counter to count the non empty characters
+    // If it is blank character, then extract the string so far, by using the
+    // counter varaible
+    // Reduce lastPosition variable in each iteration
     // Append the first word of the original string separately since it wont be
     // added due to lack of ' ' before 1st string
 
@@ -23,8 +23,7 @@ public class ReverseWordsInString {
         System.out.println("Brute Force Approach ->");
 
         s = s.trim();
-
-        StringBuilder answer = new StringBuilder();
+        StringBuilder answer = new StringBuilder(s.length());
         int counter = 0;
         int lastPosition = s.length() - 1;
 
