@@ -1,6 +1,6 @@
 package linkedList;
 
-public class Basics {
+public class LinkedListBasics {
 
     // Creating a node class which will be a node. it stores data and a pointer to
     // the next node
@@ -35,7 +35,6 @@ public class Basics {
         Node newNode = new Node(n);
         newNode.next = head;
         head = newNode;
-        printLinkedList();
     }
 
     public static void addNodeAtEnd(int n) {
@@ -48,6 +47,7 @@ public class Basics {
         if (head == null) {
             System.out.println("\nLL is empty. So adding the node at the first position.");
             head = newNode;
+            return;
         } else {
             // Since LL is not empty, we need to traverse and put the node at the end of LL
             Node temp = head;
@@ -55,9 +55,8 @@ public class Basics {
                 temp = temp.next;
             }
             temp.next = newNode;
+            return;
         }
-
-        printLinkedList();
     }
 
     // Since we have to delete a node from the start of the LL, we can directly move
@@ -71,13 +70,12 @@ public class Basics {
         }
 
         head = head.next;
-        printLinkedList();
     }
 
     public static void deleteNodeFromEnd() {
         System.out.println("\nDeleting a node from the end of LL:");
 
-        //
+        // Check if head is null,
         if (head == null) {
             System.out.println("\nLL is empty. Cannot delete the last node.");
             return;
@@ -93,13 +91,55 @@ public class Basics {
                 temp = temp.next;
             }
             temp.next = null;
-            printLinkedList();
             return;
+        }
+    }
+
+    public static void insertAtSpecificPosition(int data, int nodePosition) {
+        System.out.println("\nInserting data " + data + " at " + nodePosition + " nodePosition in the LL:");
+        Node newNode = new Node(data);
+
+        // Check if head is null. If head is null and position is non zero, then we cant
+        // add. else we can add the node
+        if (nodePosition == 0) {
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+
+        if (head == null) {
+            System.out.println("\nLL is empty. Cannot add the node.");
+            return;
+        }
+
+        int counter = 0;
+        Node temp = head;
+
+        while (temp != null && counter < nodePosition - 1) {
+            temp = temp.next;
+            counter++;
+        }
+
+        if (temp == null) {
+            System.out.println("Node Position is invalid.");
+        } else {
+            newNode.next = temp.next;
+            temp.next = newNode;
+            System.out.println("Node added");
         }
     }
 
     public static void main(String[] args) {
         addNodeAtStart(10);
-        deleteNodeFromEnd();
+        printLinkedList();
+
+        addNodeAtEnd(20);
+        printLinkedList();
+
+        addNodeAtEnd(30);
+        printLinkedList();
+
+        insertAtSpecificPosition(25, 0);
+        printLinkedList();
     }
 }
