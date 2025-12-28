@@ -14,7 +14,7 @@ public class LinkedListBasics {
         }
     }
 
-    // this is a global pointer
+    // this is a global pointer, which we do not touch
     static Node head;
 
     public static void printLinkedList() {
@@ -99,22 +99,26 @@ public class LinkedListBasics {
         System.out.println("\nInserting data " + data + " at " + nodePosition + " nodePosition in the LL:");
         Node newNode = new Node(data);
 
-        // Check if head is null. If head is null and position is non zero, then we cant
-        // add. else we can add the node
+        // If position is zero, then we just have to add at the 0th index, without
+        // checking if head is null or no
         if (nodePosition == 0) {
             newNode.next = head;
             head = newNode;
             return;
         }
 
+        // If position is non zero, but head is null, then we cant add a node
         if (head == null) {
             System.out.println("\nLL is empty. Cannot add the node.");
             return;
         }
 
+        // If nodePosition and head are not null, then insert at the specific position
         int counter = 0;
         Node temp = head;
 
+        // ensure temp is not null to ensure nodePosition !> LL' length
+        // traverse only till position -1, so we can position.next = newNode
         while (temp != null && counter < nodePosition - 1) {
             temp = temp.next;
             counter++;
@@ -129,6 +133,48 @@ public class LinkedListBasics {
         }
     }
 
+    public static int searchByValue(int data) {
+        System.out.println("\nSearching for data " + data + " in the LL:");
+
+        // If nodePosition and head are not null, then insert at the specific position
+        int counter = 0;
+        Node currentNode = head;
+
+        // keep incrementing the counter to keep track of the index. and till then,
+        // check if currentNode' data = target data
+        while (currentNode != null) {
+            if (currentNode.data == data) {
+                return counter;
+            }
+            currentNode = currentNode.next;
+            counter++;
+        }
+
+        return -1;
+    }
+
+    public static int lengthOfLL() {
+        System.out.println("\nFinding out the length of the LL:");
+
+        int counter = 0;
+        Node currentNode = head;
+
+        while (currentNode != null) {
+            currentNode = currentNode.next;
+            counter++;
+        }
+
+        return counter;
+    }
+
+    public static int lengthOfLLRecursive(Node currentNode) {
+        if (currentNode == null) {
+            return 0;
+        }
+
+        return 1 + lengthOfLLRecursive(currentNode.next);
+    }
+
     public static void main(String[] args) {
         addNodeAtStart(10);
         printLinkedList();
@@ -141,5 +187,10 @@ public class LinkedListBasics {
 
         insertAtSpecificPosition(25, 0);
         printLinkedList();
+
+        System.out.println("Index: " + searchByValue(30));
+
+        System.out.println("Length of the LL is: " + lengthOfLL());
+        System.out.println("Finding out the length of the LL in recursive manner: " + lengthOfLLRecursive(head));
     }
 }
