@@ -133,6 +133,33 @@ public class LinkedListBasics {
         }
     }
 
+    public static void insertAfterSpecificValue(int data, int value) {
+        System.out.println("\nInserting data " + data + " after " + value + " value");
+
+        // If head is null, we cant find any value in the LL.
+        if (head == null) {
+            System.out.println("LL is empty. Cannot insert");
+            return;
+        }
+
+        Node temp = head;
+
+        // Ensure temp is not null. If current node' data == target value, then insert
+        // at the next node of it
+        while (temp != null) {
+            if (temp.data == value) {
+                Node newNode = new Node(data);
+                newNode.next = temp.next;
+                temp.next = newNode;
+                break;
+            }
+            temp = temp.next;
+        }
+
+        // Value does not exist in the LL.
+        System.out.println("Value did not exist in the LL, so could not enter data.");
+    }
+
     public static int searchByValue(int data) {
         System.out.println("\nSearching for data " + data + " in the LL:");
 
@@ -192,5 +219,8 @@ public class LinkedListBasics {
 
         System.out.println("Length of the LL is: " + lengthOfLL());
         System.out.println("Finding out the length of the LL in recursive manner: " + lengthOfLLRecursive(head));
+
+        insertAfterSpecificValue(40, 30);
+        printLinkedList();
     }
 }
