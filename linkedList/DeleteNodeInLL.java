@@ -13,11 +13,10 @@ public class DeleteNodeInLL {
     static ListNode head;
 
     public static void main(String[] args) {
-        ListNode firstNode = new ListNode(5);
+        head = new ListNode(5);
         ListNode secondNode = new ListNode(10);
         ListNode thirdNode = new ListNode(30);
-        head = firstNode;
-        firstNode.next = secondNode;
+        head.next = secondNode;
         secondNode.next = thirdNode;
         System.out.print("Original LL is: ");
         printLL();
