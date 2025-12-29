@@ -151,7 +151,7 @@ public class LinkedListBasics {
                 Node newNode = new Node(data);
                 newNode.next = temp.next;
                 temp.next = newNode;
-                break;
+                return;
             }
             temp = temp.next;
         }
@@ -178,6 +178,36 @@ public class LinkedListBasics {
         }
 
         return -1;
+    }
+
+    public static void deleteNodeAtGivenValue(int value) {
+        System.out.println("\nDeleting data" + " at " + value + " value");
+
+        // If the head is null, then we cannot delete any value from the LL.
+        if (head == null) {
+            System.out.println("LL is empty. Cannot delete any node.");
+            return;
+        }
+
+        // Deleting head node value
+        if (head.data == value) {
+            head = head.next;
+            return;
+        }
+
+        Node temp = head;
+
+        // Deleting a node from 1st index onwards
+        while (temp.next != null) {
+            if (temp.next.data == value) {
+                temp.next = temp.next.next;
+                return;
+            }
+            temp = temp.next;
+        }
+
+        // Value does not exist in the LL.
+        System.out.println("Value did not exist in the LL, so cannot delete the node.");
     }
 
     public static int lengthOfLL() {
@@ -222,5 +252,9 @@ public class LinkedListBasics {
 
         insertAfterSpecificValue(40, 30);
         printLinkedList();
+
+        deleteNodeAtGivenValue(30);
+        printLinkedList();
+
     }
 }
