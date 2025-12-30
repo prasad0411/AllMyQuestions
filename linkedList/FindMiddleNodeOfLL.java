@@ -44,11 +44,11 @@ public class FindMiddleNodeOfLL {
         }
 
         System.out.println("Original LL, converted to array is: " + Arrays.toString(originalArray));
-        ListNode midnNode = bruteForce(head);
-        System.out.println("Middle Node element of the LL is: " + midnNode.val);
+        ListNode midNode = bruteForce(head);
+        System.out.println("Middle Node element of the LL is: " + midNode.val);
 
-        ListNode midnNode2 = optimalApproach(head);
-        System.out.println("Middle Node element of the LL is: " + midnNode2.val);
+        ListNode midNode2 = optimalApproach(head);
+        System.out.println("Middle Node element of the LL is: " + midNode2.val);
     }
 
     // APPROACH: Use 2 pointers, slowP and fastP and ensure fastP is not null and
