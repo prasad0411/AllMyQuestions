@@ -28,7 +28,7 @@ public class LongestPalindromicSubstring {
         System.out.println("Brute Force Approach => ");
 
         if (s == null || s.isEmpty())
-            throw new IllegalArgumentException("String is empty.");
+            return "";
 
         String maxString = "";
 
