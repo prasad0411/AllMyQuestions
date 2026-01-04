@@ -35,26 +35,53 @@ public class ReverseLinkedList {
             tempNode = tempNode.next;
         }
 
-        ListNode reversedLLNode = bruteForceApproach(headNode);
+        // ListNode reversedLLBrute = bruteForceApproach(headNode);
+        ListNode reversedLLOptimal = optimalApproach(headNode);
+
         System.out.println("Reversed LL is: ");
 
-        while (reversedLLNode != null) {
-            System.out.print(reversedLLNode.val);
-            if (reversedLLNode.next != null) {
+        while (reversedLLOptimal != null) {
+            System.out.print(reversedLLOptimal.val);
+            if (reversedLLOptimal.next != null) {
                 System.out.print(" -> ");
             }
-            reversedLLNode = reversedLLNode.next;
+            reversedLLOptimal = reversedLLOptimal.next;
         }
         System.out.println("");
     }
 
-    // APPROACH: Traverse the original LL, preserve values of all nodes in an array.
-    // Traverse this array from the last index and over write all the values of the
-    // original LL.
+    // APPROACH: Reverse the pointers in-place using three pointers (prev, current,
+    // next)
 
-    // TC: O(n) to calculate size of LL + O(n) to populate the array from LL + O(n)
-    // to overwrite the LL
+    // TC: O(n) - single pass through the list
+    // SC: O(1) - only using 3 pointer variables (no extra data structures)
+
+    public static ListNode optimalApproach(ListNode headNode) {
+        System.out.println("\n\nOptimal Approach => ");
+
+        ListNode currentNode = headNode;
+        ListNode prevNode = null;
+
+        while (currentNode != null) {
+            ListNode nextNode = currentNode.next;
+            currentNode.next = prevNode;
+            prevNode = currentNode;
+            currentNode = nextNode;
+        }
+
+        return prevNode;
+    }
+
+    // APPROACH: Traverse the original LL, preserve values of all nodes in an
+    // ArrayList.
+    // Traverse this ArrayList from the last index and over write all the values of
+    // the original LL.
+
+    // TC: O(n) to populate the arrayList from LL + O(n) to overwrite the LL
+    // Overall: 2 * O(n) = O(n), ignorning the constant
+
     // SC: O(n) Creating an array, to store the LL values of each node temporarily.
+
     public static ListNode bruteForceApproach(ListNode headNode) {
         System.out.println("\n\nBrute Force Approach => ");
 
