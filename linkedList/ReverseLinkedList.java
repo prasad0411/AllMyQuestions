@@ -1,5 +1,7 @@
 package linkedList;
 
+import java.util.ArrayList;
+
 // REVERSE A LL
 
 // Input: [1,2,3,4,5]
@@ -21,24 +23,29 @@ public class ReverseLinkedList {
         thirdNode.next = fourthNode;
         fourthNode.next = fifthNode;
 
-        ListNode tempNode = new ListNode();
-        tempNode = headNode;
+        ListNode tempNode = headNode;
 
         System.out.println("Original LL is: ");
 
         while (tempNode != null) {
-            System.out.print(tempNode.val + " -> ");
+            System.out.print(tempNode.val);
+            if (tempNode.next != null) {
+                System.out.print(" -> ");
+            }
             tempNode = tempNode.next;
         }
 
-        ListNode reversedLLNode = new ListNode();
-        System.out.println("\n\nReversed LL is: ");
-        reversedLLNode = bruteForceApproach(headNode);
+        ListNode reversedLLNode = bruteForceApproach(headNode);
+        System.out.println("Reversed LL is: ");
 
         while (reversedLLNode != null) {
-            System.out.print(reversedLLNode.val + " -> ");
+            System.out.print(reversedLLNode.val);
+            if (reversedLLNode.next != null) {
+                System.out.print(" -> ");
+            }
             reversedLLNode = reversedLLNode.next;
         }
+        System.out.println("");
     }
 
     // APPROACH: Traverse the original LL, preserve values of all nodes in an array.
@@ -49,29 +56,20 @@ public class ReverseLinkedList {
     // to overwrite the LL
     // SC: O(n) Creating an array, to store the LL values of each node temporarily.
     public static ListNode bruteForceApproach(ListNode headNode) {
-        System.out.println("Brute Force Approach => ");
+        System.out.println("\n\nBrute Force Approach => ");
 
-        ListNode tempNode = new ListNode();
-        tempNode = headNode;
+        ListNode tempNode = headNode;
 
-        int sizeLL = 0;
+        ArrayList<Integer> arrList = new ArrayList<>();
         while (tempNode != null) {
-            sizeLL++;
+            arrList.add(tempNode.val);
             tempNode = tempNode.next;
         }
 
-        tempNode = headNode;
+        ListNode reverseLLPointer = headNode;
 
-        int[] arrayOfLL = new int[sizeLL];
-        for (int i = 0; i < sizeLL; i++) {
-            arrayOfLL[i] = tempNode.val;
-            tempNode = tempNode.next;
-        }
-
-        ListNode reverseLLPointer = new ListNode();
-        reverseLLPointer = headNode;
-        for (int i = sizeLL - 1; i >= 0; i--) {
-            reverseLLPointer.val = arrayOfLL[i];
+        for (int i = arrList.size() - 1; i >= 0; i--) {
+            reverseLLPointer.val = arrList.get(i);
             reverseLLPointer = reverseLLPointer.next;
         }
 
