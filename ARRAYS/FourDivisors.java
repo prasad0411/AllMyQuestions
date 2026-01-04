@@ -21,8 +21,15 @@ public class FourDivisors {
 
         System.out.println("Original array is: " + Arrays.toString(numbers));
         System.out.println("The sum of the divisors is: " + sumFourDivisors(numbers));
-
     }
+
+    // APPROACH: Traverse every element once, and then check for its divisors
+    // If divisors count is more than 4, exit the loop, if its exactly 4, again
+    // calculate its divisors and add their sums
+
+    // TC: O(n^3). Traversing every element, finding each element' divisors,
+    // calculating sum of those divisors
+    // SC: O(1). No new data structure is created.
 
     public static int sumFourDivisors(int[] nums) {
         int totalSum = 0;
@@ -37,8 +44,6 @@ public class FourDivisors {
                 if (divisorsCount > 4)
                     break;
             }
-
-            // 21, 4, 7
 
             if (divisorsCount == 4) {
                 for (int j = 2; j <= nums[i] / 2; j++) {

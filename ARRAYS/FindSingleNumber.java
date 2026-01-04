@@ -27,6 +27,7 @@ public class FindSingleNumber {
     // TC: O(n log n). Sort the array and traverse through all elements
     // once
     // SC: O(1). No new data structure is created.
+
     public static int bruteForce(int[] array) {
         System.out.println("Optimal Approach => ");
 
