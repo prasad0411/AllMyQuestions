@@ -1,6 +1,7 @@
 package linkedList;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // REVERSE A LL
 
@@ -59,8 +60,8 @@ public class ReverseLinkedList {
     public static ListNode optimalApproach(ListNode headNode) {
         System.out.println("\n\nOptimal Approach => ");
 
-        ListNode currentNode = headNode;
         ListNode prevNode = null;
+        ListNode currentNode = headNode;
 
         while (currentNode != null) {
             ListNode nextNode = currentNode.next;

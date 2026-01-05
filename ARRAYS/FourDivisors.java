@@ -20,39 +20,82 @@ public class FourDivisors {
         int[] numbers = { 21, 4, 7 };
 
         System.out.println("Original array is: " + Arrays.toString(numbers));
-        System.out.println("The sum of the divisors is: " + sumFourDivisors(numbers));
+        System.out.println("The sum of the divisors is: " + bruteForceApproach(numbers));
+        System.out.println("The sum of the divisors is: " + optimalApproach(numbers));
+
+    }
+
+    // APPROACH: Traverse every element once, and in nested loop, check for its
+    // divisors [ only up to sqrt(n) ]
+    // If j divides the number, the paired divisor is n/j.
+    // Add both divisors to currentSum (avoid double-counting if j*j == n).
+    // If divisors count exceeds 4, break early.
+    // After the loop, if exactly 4 divisors, add currentSum to totalSum.
+
+    // TC: O(n * square root (k)). Traversing every element * finding each element'
+    // divisors
+    // SC: O(1). No new data structure is created.
+
+    public static int optimalApproach(int[] nums) {
+        int totalSum = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            int divisorsCount = 0;
+            int currentSum = 0;
+
+            for (int j = 1; j * j <= nums[i]; j++) {
+                if (nums[i] % j == 0) {
+                    divisorsCount++;
+                    currentSum += j;
+
+                    int divisor2 = nums[i] / j;
+                    if (divisor2 != j) {
+                        divisorsCount++;
+                        currentSum += divisor2;
+                    }
+                }
+
+                if (divisorsCount > 4)
+                    break;
+            }
+
+            if (divisorsCount == 4)
+                totalSum += currentSum;
+        }
+
+        return totalSum;
     }
 
     // APPROACH: Traverse every element once, and then check for its divisors
     // If divisors count is more than 4, exit the loop, if its exactly 4, again
     // calculate its divisors and add their sums
 
-    // TC: O(n^3). Traversing every element, finding each element' divisors,
-    // calculating sum of those divisors
+    // TC: O(n * k). Traversing every element * finding each element' divisors
     // SC: O(1). No new data structure is created.
 
-    public static int sumFourDivisors(int[] nums) {
+    private static int bruteForceApproach(int[] numbers) {
         int totalSum = 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            int divisorsCount = 2;
+        for (int n : numbers) {
+            int divisorsCount = 0;
+            int currentSum = 0;
 
-            for (int j = 2; j <= nums[i] / 2; j++) {
-                if (nums[i] % j == 0)
+            for (int i = 1; i <= n / 2; i++) {
+                if (n % i == 0) {
                     divisorsCount++;
-
-                if (divisorsCount > 4)
-                    break;
-            }
-
-            if (divisorsCount == 4) {
-                for (int j = 2; j <= nums[i] / 2; j++) {
-                    if (nums[i] % j == 0)
-                        totalSum += j;
+                    currentSum += i;
                 }
 
-                int originalNumberSum = 1 + nums[i];
-                totalSum += originalNumberSum;
+                if (divisorsCount > 4) {
+                    break; // stop early if too many divisors
+                }
+            }
+
+            currentSum += n;
+            divisorsCount++; // include the number itself
+
+            if (divisorsCount == 4) {
+                totalSum += currentSum;
             }
         }
 
