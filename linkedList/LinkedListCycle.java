@@ -23,17 +23,20 @@ public class LinkedListCycle {
         secondNode.next = thirdNode;
         thirdNode.next = fourthNode;
         fourthNode.next = fifthNode;
+        fifthNode.next = secondNode;
 
         System.out.print("Original LL is: ");
 
         ListNode tempNode = headNode;
-        while (tempNode != null) {
-            System.out.print(tempNode.val);
-            if (tempNode.next != null) {
-                System.out.print(" -> ");
-            }
-            tempNode = tempNode.next;
-        }
+
+        // Not printing the loop since it is a cycle
+        // while (tempNode != null) {
+        // System.out.print(tempNode.val);
+        // if (tempNode.next != null) {
+        // System.out.print(" -> ");
+        // }
+        // tempNode = tempNode.next;
+        // }
 
         System.out.print("\n\nDoes LL contain a cycle?");
         // System.out.println(optimalApproach(headNode));
@@ -76,9 +79,9 @@ public class LinkedListCycle {
     // SC: O(n) - Inserting every node' address in the HashSet
 
     public static boolean bruteForceApproach(ListNode headNode) {
-        System.out.print("\nOptimal Approach => : ");
+        System.out.print("\nBrute Force Approach => : ");
 
-        if (headNode == null) {
+        if (headNode == null || headNode.next == null) {
             return false;
         }
 
