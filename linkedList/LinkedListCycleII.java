@@ -1,17 +1,19 @@
 package linkedList;
 
+import java.util.HashMap;
+
 public class LinkedListCycleII {
     public static void main(String[] args) {
-        ListNode headNode = new ListNode(1);
+        ListNode headNode = new ListNode(3);
         ListNode secondNode = new ListNode(2);
         ListNode thirdNode = new ListNode(0);
-        ListNode fourthNode = new ListNode(4);
-        ListNode fifthNode = new ListNode(2);
+        ListNode fourthNode = new ListNode(-4);
+        // ListNode fifthNode = new ListNode();
 
         headNode.next = secondNode;
         secondNode.next = thirdNode;
         thirdNode.next = fourthNode;
-        fourthNode.next = fifthNode;
+        // fourthNode.next = fifthNode;
 
         System.out.print("Original LL is: ");
 
@@ -25,13 +27,29 @@ public class LinkedListCycleII {
         }
 
         System.out.print("\n\nDoes LL contain a cycle?");
-        // System.out.println(optimalApproach(headNode));
-        System.out.println(bruteForceApproach(headNode));
+        ListNode node = bruteForceApproach(headNode);
+        System.out.println(node.val);
     }
 
-    private static char[] bruteForceApproach(ListNode headNode) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'bruteForceApproach'");
+    static HashMap<ListNode, Integer> mappedNodes = new HashMap<>();
+
+    public static ListNode bruteForceApproach(ListNode headNode) {
+        if (headNode == null) {
+            return null;
+        }
+
+        ListNode tempNode = headNode;
+        int i = 0;
+
+        while (tempNode != null) {
+            mappedNodes.put(tempNode, i++);
+            if (mappedNodes.containsKey(tempNode))
+                return tempNode;
+
+            tempNode = tempNode.next;
+        }
+
+        return null;
     }
 
     static class ListNode {
