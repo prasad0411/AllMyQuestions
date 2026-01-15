@@ -52,6 +52,7 @@ public class LinkedListCycle {
     public static boolean optimalApproach(ListNode headNode) {
         System.out.print("\nOptimal Approach => : ");
 
+        // Edge case: if there is just 1 node
         if (headNode == null || headNode.next == null) {
             return false;
         }
@@ -81,6 +82,7 @@ public class LinkedListCycle {
     public static boolean bruteForceApproach(ListNode headNode) {
         System.out.print("\nBrute Force Approach => : ");
 
+        // Edge case: if there is just 1 node
         if (headNode == null || headNode.next == null) {
             return false;
         }
