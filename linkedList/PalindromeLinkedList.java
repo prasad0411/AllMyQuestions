@@ -54,8 +54,8 @@ public class PalindromeLinkedList {
 
         int size = arrayList.size();
 
-        for (int i = 0; i < size / 2;) {
-            if (arrayList.get(i++) != arrayList.get(size - 1 - i)) {
+        for (int i = 0; i < size / 2; i++) {
+            if (!arrayList.get(i).equals(arrayList.get(size - 1 - i))) {
                 return false;
             }
         }
