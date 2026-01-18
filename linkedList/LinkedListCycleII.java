@@ -5,10 +5,10 @@ import java.util.HashMap;
 // DETECT IF A CYCLE EXISTS IN THE LL, IF YES, THEN FIND THE POSITION OF THAT NODE
 // IF CYCLE DOES NOT EXIST, THEN RETURN -1
 
-// Input: [1,2,0,4,2]
+// Input: 1 -> 2 -> 0 -> 4-> 2
 // 1
 
-// Input: [2,3,4]
+// Input: 2 -> 3 -> 4
 // -1
 
 public class LinkedListCycleII {
@@ -41,6 +41,38 @@ public class LinkedListCycleII {
             System.out.println(node.val);
         else
             System.out.println("LL has no cycle.");
+    }
+
+    // APPROACH: Use a fast (moving 2x of slowP), and a slow pointer, if fastP ever
+    // becomes equal to slowP, then a cycle exists
+
+    // TC: O(n) - Traversing the LL once
+    // SC: O(1) - No new data structure. Only creating 2 pointers.
+    public static ListNode optimalApproach(ListNode headNode) {
+        if (headNode == null) {
+            return null;
+        }
+        // 3 2 0 -4 2
+        ListNode slowP = headNode;
+        ListNode fastP = headNode;
+
+        while (fastP != null && fastP.next != null) {
+            slowP = slowP.next;
+            fastP = fastP.next.next;
+
+            if (fastP == slowP) {
+                slowP = headNode;
+
+                while (slowP != fastP) {
+                    fastP = fastP.next;
+                    slowP = slowP.next;
+                }
+
+                return slowP;
+            }
+        }
+
+        return null;
     }
 
     // APPROACH: Use a fast (moving 2x of slowP), and a slow pointer, if fastP ever
