@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class QueuesPractice {
     public static void main(String[] args) {
-
+ki
     }
 
     public static List<Integer> getSeatsAllocation(List<Integer> arr) {
