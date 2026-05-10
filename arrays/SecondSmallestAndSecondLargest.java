@@ -1,27 +1,39 @@
 
 import java.util.Arrays;
+// Q: Striver' sheet
 
+// Problem: AN ARRAY IS GIVEN, NEED TO FIND 2ND LARGEST AND 2ND SMALLEST ELEMENT 
+// In output, we will return 2 elements
 
-// AN UNSORTED ARRAY IS GIVEN, NEED TO FIND 2ND LARGEST AND 2ND SMALLEST ELEMENTS
+// Constraints and edge cases: we need to handle conditions like array is empty, or if it has less 2 elements, or if there are duplicates 
+
+// For eg: 
 // Input : 3, 4, 1, 7, 23, 1
 // Output: 2nd Largest element: 7, 2nd Smallest element: 3
+
 // Input : 1, 2, 3
 // Output: 2nd Largest element: 2, 2nd Smallest element: 2
+
 // Input: 1, 1, 1
 // Output: -1, -1 
+
 public class SecondSmallestAndSecondLargest {
 
     public static void main(String[] args) {
-        int inputArray[] = new int[]{3, 1, 2};
+        int inputArray[] = new int[] { 5, 4, 6, 7 };
         System.out.println("Original array is: " + Arrays.toString(inputArray));
-        // int resultArrBrute[] = bruteForceApproach(inputArray);
+        @SuppressWarnings("unused")
+        int resultArrBrute[] = bruteForceApproach(inputArray);
         // System.out.println(
         // "Brute =>\n2nd largest element is: " + resultArrBrute[0] + "\n2nd smallest
-        // element is: "+ resultArrBrute[1]);
+        // element is: "
+        // + resultArrBrute[1]);
+
         int resultArrOptimal[] = optimalApproach(inputArray);
         System.out.println(
-                "Optimal Approach =>\n2nd largest element is: " + resultArrOptimal[0] + "\n2nd smallest element is: "
-                + resultArrOptimal[1]);
+                "Optimal Approach =>\n2nd largest element is: " + resultArrOptimal[0] +
+                        "\n2nd smallest element is: "
+                        + resultArrOptimal[1]);
     }
 
     // Time Complexity: O(n log n)
@@ -30,36 +42,37 @@ public class SecondSmallestAndSecondLargest {
     // Space Complexity: O(1) In place sorting
     @SuppressWarnings("unused")
     private static int[] bruteForceApproach(int[] inputArray) {
-        // EDGE CASE
+        // EDGE CASE: array is empty or has invalid number of elements
         if (inputArray == null || inputArray.length < 2) {
-            throw new IllegalArgumentException("Array needs at least 2 elements");
+            throw new IllegalArgumentException("Array is null or does not have enough elements.");
         }
 
         Arrays.sort(inputArray);
 
-        int secondSmallest = -1;
-        int secondLargest = -1;
+        if (inputArray[0] == inputArray[inputArray.length - 1])
+            return new int[] { -1, -1 };
 
-        for (int i = 1; i < inputArray.length; i++) {
-            if (inputArray[i] != inputArray[0]) {
-                secondSmallest = inputArray[i];
+        int secondLargestValue = inputArray[inputArray.length - 2];
+        for (int i = inputArray.length - 1; i > 0;) {
+            if (inputArray[i] == inputArray[i - 1]) {
+                i--;
+            } else {
+                secondLargestValue = inputArray[i - 1];
                 break;
             }
         }
 
-        for (int i = inputArray.length - 2; i >= 0; i--) {
-            if (inputArray[i] != inputArray[inputArray.length - 1]) {
-                secondLargest = inputArray[i];
+        int secondSmallestValue = inputArray[1];
+        for (int i = 0; i < inputArray.length - 1;) {
+            if (inputArray[i] == inputArray[i + 1]) {
+                i++;
+            } else {
+                secondSmallestValue = inputArray[i + 1];
                 break;
             }
         }
 
-        // IF ELEMENTS ARE DUPLICATE
-        if (secondSmallest == -1 || secondLargest == -1) {
-            return new int[]{-1, -1};
-        }
-
-        return new int[]{secondLargest, secondSmallest};
+        return new int[] { secondLargestValue, secondSmallestValue };
     }
 
     // Time Complexity: O(n)
@@ -72,33 +85,31 @@ public class SecondSmallestAndSecondLargest {
             throw new IllegalArgumentException("Input array is empty.");
         }
 
-        int smallestValue = Integer.MAX_VALUE;
-        int largestValue = Integer.MIN_VALUE;
-        int secondSmallestValue = Integer.MAX_VALUE;
-        int secondLargestValue = Integer.MIN_VALUE;
+        @SuppressWarnings("unused")
+        int smallestValue, largestValue, secondSmallestValue, secondLargestValue;
+        smallestValue = largestValue = secondSmallestValue = secondLargestValue = inputArray[0];
 
-        for (int num : inputArray) {
-            // SECOND SMALLEST VALUE
-            if (num < smallestValue) {
-                secondSmallestValue = smallestValue;
-                smallestValue = num;
-            } else if (num < secondSmallestValue && num != smallestValue) {
-                secondSmallestValue = num;
-            }
+        for (int i = 1; i < inputArray.length; i++) {
+            int currentValue = inputArray[i];
 
-            // SECOND LARGEST VALUE
-            if (num > largestValue) {
+            if (currentValue > largestValue) {
                 secondLargestValue = largestValue;
-                largestValue = num;
-            } else if (num > secondLargestValue && num != largestValue) {
-                secondLargestValue = num;
+                largestValue = currentValue;
+            } else if (currentValue != largestValue && currentValue > secondLargestValue) {
+                secondLargestValue = currentValue;
+            }
+
+            if (currentValue < smallestValue) {
+                secondSmallestValue = smallestValue;
+                smallestValue = currentValue;
+            } else if (currentValue != smallestValue && currentValue < secondSmallestValue) {
+                secondSmallestValue = currentValue;
             }
         }
 
-        // IF ELEMENTS ARE DUPLICATE
-        if (secondLargestValue == Integer.MIN_VALUE || secondSmallestValue == Integer.MAX_VALUE) {
-            return new int[]{-1, -1};
-        }
-        return new int[]{secondLargestValue, secondSmallestValue};
+        if (largestValue == smallestValue)
+            return new int[] { -1, -1 };
+
+        return new int[] { secondLargestValue, secondSmallestValue };
     }
 }
