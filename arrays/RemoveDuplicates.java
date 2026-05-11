@@ -20,15 +20,13 @@ public class RemoveDuplicates {
     public static void main(String[] args) {
         int nums[] = new int[] { -1, -1, 1, 1, 11 };
         System.out.println("Original array is: " + Arrays.toString(nums));
-        int uniqueElements = bruteForceApproach(nums);
-        // int uniqueElements = optimalApproach(nums);
-        for (int i = 0; i < uniqueElements; i++) {
-            System.out.print(nums[i] + " ");
-        }
+        optimalApproach(nums);
+        System.out.println("Original array after removing duplicates is: " + Arrays.toString(nums));
     }
 
     // Approach: Create an ArrayList to store all the distinct elements.
     // Copy all these elements back to the original array.
+
     // TC: O(n) + O(k): Traverse the original array once and then traverse the
     // ArrayList for distinct elements.
     // SC: O(k): Creating an ArrayList for distinct elements.
@@ -48,26 +46,27 @@ public class RemoveDuplicates {
         return uniqueElementsList.size();
     }
 
-    // TC: O(n) Traverse through all elements once and modify the array in place
+    // Approach: Use a fast pointer to traverse the original array
+    // Use a slow pointer to traverse the distinct elements and modify original
+    // array
+
+    // TC: O(n) Traverse through all the elements of the original array
     // SC: O(1) No new data structure created
     public static int optimalApproach(int[] nums) {
-        // BASE CASE: Array being null or empty
-        if (nums == null || nums.length < 1) {
-            throw new IllegalArgumentException("Input array is null or has an invalid size.");
-        }
-
-        System.out.println("Optimal Approach =>");
-        int uniqueIndex = 0;
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[uniqueIndex] != nums[i]) {
-                ++uniqueIndex;
-                nums[uniqueIndex] = nums[i];
+        validateInput(nums);
+        int slowP, fastP;
+        slowP = fastP = 0;
+        for (; fastP < nums.length - 1; fastP++) {
+            if (nums[fastP] != nums[fastP + 1]) {
+                nums[slowP++] = nums[fastP];
             }
         }
 
-        return uniqueIndex + 1;
+        nums[slowP] = nums[fastP];
+        return slowP + 1;
     }
 
+    // Checking if the input array is valid or no
     private static void validateInput(int[] nums) {
         if (nums == null || nums.length == 0)
             throw new IllegalArgumentException("Input array cannot be null or empty.");
