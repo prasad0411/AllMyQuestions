@@ -1,52 +1,51 @@
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
-// REMOVE DUPLICATE NUMBERS FROM AN ARRAY, IN PLACE
-// RETURN THE NUMBER OF UNIQUE ELEMENTS IN THE ARRAY
-// Input: [1, 2, 2, 3];
-// Output: 1, 2, 3
-// Input: [0, 0, 0];
-// Output: 0
+// LC: 26. Remove Duplicates from Sorted Array
+
+// Problem: Remove duplicate elements from a sorted array, in place.
+// Need to return the count of unique elements post the cleaning
+// Constraints: Removal of elements must be done in place, and relative order of elements should be preserved. 
+
+// Input: [1, 2, 2, 3]
+// Output: 3. New array: 1, 2, 3
+
+// Input: [0, 0, 0]
+// Output: 1. New array: 0
+
+// Pattern: Arrays: 2 pointers
+
 public class RemoveDuplicates {
-
     public static void main(String[] args) {
         int nums[] = new int[] { -1, -1, 1, 1, 11 };
         System.out.println("Original array is: " + Arrays.toString(nums));
-        // int uniqueElements = bruteForceApproach(nums);
-        int uniqueElements2 = optimalApproach(nums);
-        for (int i = 0; i < uniqueElements2; i++) {
+        int uniqueElements = bruteForceApproach(nums);
+        // int uniqueElements = optimalApproach(nums);
+        for (int i = 0; i < uniqueElements; i++) {
             System.out.print(nums[i] + " ");
         }
     }
 
-    // TC: O(n) Using 1 loop to traverse through all elements and insert into the
-    // Set.
-    // Another loop to put the unique Set values into array
-    // SC: O(n) Creation of hashSet to store unique elements
+    // Approach: Create an ArrayList to store all the distinct elements.
+    // Copy all these elements back to the original array.
+    // TC: O(n) + O(k): Traverse the original array once and then traverse the
+    // ArrayList for distinct elements.
+    // SC: O(k): Creating an ArrayList for distinct elements.
     public static int bruteForceApproach(int[] nums) {
-        // BASE CASE: Array being null or empty
-        if (nums == null || nums.length < 1) {
-            throw new IllegalArgumentException("Input array is null or has an invalid size.");
-        }
-        System.out.println("Brute Force =>");
+        validateInput(nums);
+        ArrayList<Integer> uniqueElementsList = new ArrayList<>();
 
-        int uniqueElements = 0;
-        Set<Integer> set = new LinkedHashSet<>();
         for (int num : nums) {
-            if (!set.contains(num)) {
-                set.add(num);
-                uniqueElements++;
-            }
+            if (uniqueElementsList.isEmpty() || uniqueElementsList.get(uniqueElementsList.size() - 1) != num)
+                uniqueElementsList.add(num);
         }
 
-        int i = 0;
-        for (int num : set) {
-            nums[i++] = num;
+        for (int i = 0; i < uniqueElementsList.size(); i++) {
+            nums[i] = uniqueElementsList.get(i);
         }
 
-        return uniqueElements;
+        return uniqueElementsList.size();
     }
 
     // TC: O(n) Traverse through all elements once and modify the array in place
@@ -67,5 +66,10 @@ public class RemoveDuplicates {
         }
 
         return uniqueIndex + 1;
+    }
+
+    private static void validateInput(int[] nums) {
+        if (nums == null || nums.length == 0)
+            throw new IllegalArgumentException("Input array cannot be null or empty.");
     }
 }
