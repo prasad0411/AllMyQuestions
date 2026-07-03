@@ -2,86 +2,61 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-// IN AN UNSORTED ARRAY, FIND THE ELEMENT THAT OCCURS MORE THAN N/2 TIMES
+// LC: 169. Majority Element
 
-// Input: [3,2,3]  
+// Problem: From an array, find the majority element that occurs more than n/2 times.
+// Majoity element is always present in the array.
+
+// Input: [1,3,3]
 // Output: 3
 
-// Input: [2,2,1,1,1,2,2]
-// Output:2
+// Input: [3,1,2,2]
+// Output: 2
+
+// Pattern: Arrays:  
 public class MajorityElement {
 
     public static void main(String[] args) {
-        int[] inputArray = new int[] { 2, 1 };
+        int[] inputArray = new int[] { 8, 8, 7, 7, 7 };
         System.out.println("Original array is: " + Arrays.toString(inputArray));
-        // System.out.println("Majority element is: " + bruteForce(inputArray));
-        System.out.println("Majority element is: " + betterThanBruteForce(inputArray));
+        // System.out.println("Brute Force, Majority element is: " +
+        // bruteForce(inputArray));
+        System.out.println("betterThanBruteForce Approach: Majority element is: " +
+                betterThanBruteForce(inputArray));
         // System.out.println("Majority element is: " + optimalApproach(inputArray));
     }
 
-    // APPROACH: Boyer-Moore Voting Algorithm
-    // Declare candidateElement as arr[0] and count as 1.
-    // Use loop to check if candidateElement == currentElement, if yes, then
-    // count++, else count--
-    // If count becomes 0, then make current element as candidateElement.
-
+    // Approach: Store the frequencies of every element in a Map. Then return the key with maximum frequency
     // TC: O(n)
-    // Traversing through the whole array and checking for maximumElement based on
-    // counts
-
-    // SC: O(1)- No new data structure
-    @SuppressWarnings("unused")
-    private static int optimalApproach(int[] inputArray) {
-        validate(inputArray);
-
-        int count = 1;
-        int candidateElement = inputArray[0];
-
-        for (int i = 1; i < inputArray.length; i++) {
-            if (count == 0) {
-                candidateElement = inputArray[i];
-            }
-            count += (inputArray[i] == candidateElement) ? 1 : -1;
-        }
-
-        return candidateElement;
-    }
-
-    // APPROACH: Use a hashmap to store freq of each element.
-    // During insertion, check if element' count exceeds N/2 times
-    // Time Complexity: O(n).
-    // Traversing through the whole array and putting freq of each element into the
-    // Map
-    // Space Complexity: O(n).
-    // Creating hashMap
-    private static int betterThanBruteForce(int[] inputArray) {
-        validate(inputArray);
+    // SC: O(n)
+    public static int betterThanBruteForce(int[] nums) {
+        validate(nums);
 
         Map<Integer, Integer> freqMap = new HashMap<>();
-        int threshold = inputArray.length / 2;
-        for (int num : inputArray) {
-            int currentCount = freqMap.getOrDefault(num, 0) + 1;
-            freqMap.put(num, currentCount);
-
-            if (currentCount > threshold) {
-                return num;
-            }
+        for (int num : nums) {
+            freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
         }
 
-        throw new AssertionError("No majority element exists");
+        int maxFreq = 0;
+        int majorityElement = 0;
+        for (Map.Entry<Integer, Integer> entry : freqMap.entrySet()) {
+            if (entry.getValue() > maxFreq) {
+                maxFreq = entry.getValue();
+                majorityElement = entry.getKey();
+            }
+        }
+        return majorityElement;
     }
 
-    // APPROACH: Sort the array so that the middle element is the ans, as it has to
-    // occur N/2 times
-    // Time Complexity: O(n log n).
-    // Space Complexity: O(1).
-    // In place modification.
-    @SuppressWarnings("unused")
-    private static int bruteForce(int[] inputArray) {
-        validate(inputArray);
+    // Approach: Sort the array, and the element that occurs majority amount of
+    // times, will be at the n/2 index.
+    // TC: O(n log n)
+    // SC: O(1)
+    public static int bruteForce(int[] nums) {
+        validate(nums);
 
-        Arrays.sort(inputArray);
-        return inputArray[inputArray.length / 2];
+        Arrays.sort(nums);
+        return nums[nums.length / 2];
     }
 
     // Validates array for null or being empty

@@ -1,7 +1,9 @@
 
 import java.util.Arrays;
 
-// AN UNSORTED ARRAY IS GIVEN, NEED TO SORT IT IN PLACE FOR THE 3 NUMBERS, 0, 1, 2, WHICH ARE REPRESENTED AS RED, WHITE & BLUE 
+// LC: 75. Sort Colors.
+// Problem: Sort three colors, red, white and blue, represented by 0, 1, 2.
+// Constraints: Need to be done in-place and in a single pass.
 
 // Input: [2, 0, 2, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 0, 2, 2, 2, 1, 1]  
 // Output: [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2]
@@ -9,8 +11,7 @@ import java.util.Arrays;
 // Input:[2,0,2,1,1,0]
 // Output:[0,0,1,1,2,2]
 
-// Input: [2,0,1]
-// Output: [0,1,2]
+// Pattern: Arrays: 3 pointers (Dutch National Flag)
 
 public class SortColors {
     public static void main(String[] args) {
@@ -30,9 +31,9 @@ public class SortColors {
     // SC: O(1)
     @SuppressWarnings("unused")
     private static void bruteForce(int[] inputArray) {
-        @SuppressWarnings("unused")
-        int zeroCounter, oneCounter, twoCounter;
-        zeroCounter = oneCounter = twoCounter = 0;
+        int zeroCounter = 0;
+        int oneCounter = 0;
+        int twoCounter = 0;
 
         for (int num : inputArray) {
             if (num == 0)
@@ -56,11 +57,12 @@ public class SortColors {
         }
     }
 
-    // Approach: Maintain 3 pointers, low, mid, high, where 0 to low-1 has all
-    // 0s, low to mid-1 has all 1s, mid to high-1 has all unsorted elements, high
-    // to arr.length -1 has all 2s.
-    // 0,0,0,1,1,1, 2,0,2,1,1,0, 2,2,2
+    // Approach: Maintain 3 pointers, low, mid, high, where 0 to low-1 has all 0s,
+    // low to mid-1 has all 1s, mid to high has all unsorted elements, high+1 to
+    // arr.length -1 has all 2s.
 
+    // TC: O(n) - Single Pass
+    // SC: O(1)
     private static void optimalApproach(int[] inputArray) {
         int low = 0;
         int mid = 0;
