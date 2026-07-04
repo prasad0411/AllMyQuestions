@@ -1,68 +1,63 @@
-// AN UNSORTED ARRAY OF PRICES IS GIVEN
-// FIND THE DAY TO BUY STOCKS AND A DAY IN THE FUTURE TO SELL IT, TO HAVE MAXIMUM PROFIT
 
-// Input: [7,1,5,3,6,4]  
-// Output: 5, Explaination: Buy on day 2, and sell on day 5, profit = 6-1
+import java.util.Arrays;
+
+// LC: 121. Best time to Buy and Sell stocks.
+// Problem: We have an array, Price, P[i] is the price of the stock each day.
+// Find a day in the future when we can make maximum profit by selling that stock, which was purchased on an earlier day
+// Constraints: The stock cannot be purchased and sold at the same day. It cant be sold before it is purchased. Return 0 if there is no profit
+
+// Input: [2,1,5,3,6,4]  
+// Output: 5
 
 // Input:[7,6,4,3,1]
-// Output: 0, Explaination: No transaction is good, profit = 0
-import java.util.Arrays;
+// Output: 0
+
+// Pattern: Arrays: 2 pointers 
 
 public class StockBuySell {
 
     public static void main(String[] args) {
-        int[] prices = new int[] { 7, 1, 5, 3, 6, 4 };
+        int[] prices = new int[] { 2, 1, 5, 3, 6, 4 };
         System.out.println("Original array is: " + Arrays.toString(prices));
         // System.out.println("Maximum profit is: " + optimalApproach(prices));
-        System.out.println("Maximum profit is: " + bruteForceApproach(prices));
+        System.out.println("Brute Force Approach: Maximum profit is: " + bruteForceApproach(prices));
     }
 
-    // APPROACH: Use a single loop to traverse the array
-    // Start i from from 0th index, declare buy price as Math.min value
-    // Calculate min buying price and profit if we sell today
-    // Also calculate max profit at each iteration
+    // Approach: While iterating over the array, maintain the cheapest value and the
+    // global profit. And profit is today' price - cheapest
+    // Core Takeaway: Track best candidates as you iterate, don't search separately
 
-    // Time Complexity: O(n)
-    // Traversing the whole array once, considering max profit at each iteration
-    // Space Complexity: O(1)
-    // No new data structure
-    public static int optimalApproach(int[] prices) {
-        // BASE CASE
-        if (prices == null || prices.length == 0) {
-            throw new IllegalArgumentException("Input array is null or has an invalid size.");
-        }
+    // TC: O(n)
+    // SC: O(1)
+    private static int optimalApproach(int[] prices) {
+        if (prices == null || prices.length == 0)
+            return 0;
 
-        int buyPrice = Integer.MAX_VALUE;
         int maxProfit = 0;
+        int cheapestValue = prices[0];
 
-        for (int i = 0; i < prices.length; i++) {
-            buyPrice = Math.min(buyPrice, prices[i]);
-            int todayProfit = prices[i] - buyPrice;
-            maxProfit = Math.max(maxProfit, todayProfit);
+        for (int currentPrice : prices) {
+            cheapestValue = Math.min(cheapestValue, currentPrice);
+            maxProfit = Math.max(maxProfit, currentPrice - cheapestValue);
         }
 
         return maxProfit;
     }
 
-    // APPROACH: Use 2 separate loops
-    // Start i from from 0th index for buying price, and start j from i+1 for
-    // selling price.
-    // At each iteration, check if today' SP - CP is max profit
-
-    // Time Complexity: O(n * n)
-    // Traversing the whole array twice, once for CP, then for SP
-    // Space Complexity: O(1)
-    // No new data structure
-    public static int bruteForceApproach(int[] prices) {
-        // BASE CASE
-        if (prices == null || prices.length == 0) {
-            throw new IllegalArgumentException("Input array is null or has an invalid size.");
-        }
-
+    // Approach: Iterate over the array using 2 loops from the end. Maintain a
+    // max profit that compares against each profit in each iteration.
+    // TC: O(n * n)
+    // SC: O(1)
+    private static int bruteForceApproach(int[] prices) {
         int maxProfit = 0;
-        for (int i = 0; i < prices.length; i++) {
-            for (int j = i + 1; j < prices.length; j++) {
-                maxProfit = Math.max(prices[j] - prices[i], maxProfit);
+        int currentProfit = 0;
+
+        for (int i = prices.length - 1; i > 0; i--) {
+            for (int j = i - 1; j >= 0; j--) {
+                currentProfit = prices[i] - prices[j];
+                if (currentProfit > maxProfit) {
+                    maxProfit = currentProfit;
+                }
             }
         }
 
