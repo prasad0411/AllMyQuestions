@@ -12,7 +12,7 @@ import java.util.Arrays;
 // Input:[7,6,4,3,1]
 // Output: 0
 
-// Pattern: Arrays: 2 pointers 
+// Pattern: Arrays: Extrema Tracking 
 
 public class StockBuySell {
 
