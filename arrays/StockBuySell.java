@@ -26,7 +26,6 @@ public class StockBuySell {
     // Approach: While iterating over the array, maintain the cheapest value and the
     // global profit. And profit is today' price - cheapest
     // Core Takeaway: Track best candidates as you iterate, don't search separately
-
     // TC: O(n)
     // SC: O(1)
     private static int optimalApproach(int[] prices) {

@@ -20,39 +20,9 @@ public class RearrangeArrayElementsBySign {
     public static void main(String[] args) {
         int[] numsArr = new int[] { 3, 1, -2, -5, 2, -4 };
         System.out.println("Original array is: " + Arrays.toString(numsArr));
-        System.out.println("Rearranged array is: " + Arrays.toString(bruteForce(numsArr)));
+        System.out.println("Rearranged array using Optimal Approach is: " + Arrays.toString(optimalApproach(numsArr)));
         // System.out.println("Rearranged array is: " +
-        // Arrays.toString(betterThanBruteForce(numsArr)));
-    }
-
-    // APPROACH: Create a new array for storing the result array
-    // Traverse original array once and based on +/- element, place it at +2 index
-    // each time in result array
-
-    // Time Complexity: O(n)
-    // Traverse original array once for positive elements and negative elements
-    // Create a new array as original size
-
-    // Space Complexity: O(n)
-    // Creating a new array O(n)
-    private static int[] betterThanBruteForce(int[] nums) {
-        validate(nums);
-
-        int[] resultArr = new int[nums.length];
-        int posIndex = 0;
-        int negIndex = 1;
-
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] > 0) {
-                resultArr[posIndex] = nums[i];
-                posIndex = posIndex + 2;
-            } else if (nums[i] < 0) {
-                resultArr[negIndex] = nums[i];
-                negIndex = negIndex + 2;
-            }
-        }
-
-        return resultArr;
+        // Arrays.toString(betterThanoptimalApproach(numsArr)));
     }
 
     // APPROACH: Traverse the original array, create a new array, and increment by 2
@@ -60,7 +30,7 @@ public class RearrangeArrayElementsBySign {
 
     // TC: O(n)
     // SC: O(n) Creating a new array
-    private static int[] bruteForce(int[] nums) {
+    private static int[] optimalApproach(int[] nums) {
         if (nums == null || nums.length == 0) {
             throw new IllegalArgumentException("Input array is null or has invalid size.");
         }
