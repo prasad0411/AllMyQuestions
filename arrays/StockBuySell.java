@@ -28,6 +28,7 @@ public class StockBuySell {
     // Core Takeaway: Track best candidates as you iterate, don't search separately
     // TC: O(n)
     // SC: O(1)
+    @SuppressWarnings("unused")
     private static int optimalApproach(int[] prices) {
         if (prices == null || prices.length == 0)
             return 0;

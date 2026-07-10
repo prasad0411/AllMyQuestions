@@ -33,7 +33,6 @@ public class MaximumSubarraySum {
             currentSum = Math.max(currentSum + nums[i], nums[i]);
             maxSum = Integer.max(maxSum, currentSum);
         }
-        // -2, 1, -3, 4, -1, 2, 1, -5, 4
         return maxSum;
     }
 
@@ -54,5 +53,4 @@ public class MaximumSubarraySum {
         }
         return maxSum;
     }
-
 }
