@@ -41,6 +41,15 @@ public class SetMatrixZero {
     // values.
     // TC: O(m * n). Traversing the M*N array
     // SC: O(m + n). Storing zero elements in a Set
+    public static int[][] optimalApproach(int[][] matrix) {
+        return new int[][];
+    }
+
+    // Approach: Traverse the original array and store row and column indices which
+    // contain 0 in a Set. Modify the original array based on these Set
+    // values.
+    // TC: O(m * n). Traversing the M*N array
+    // SC: O(m + n). Storing zero elements in a Set
     public static int[][] bruteForce(int[][] matrix) {
         Set<Integer> setRowZero = new HashSet<>();
         Set<Integer> setColumnZero = new HashSet<>();
