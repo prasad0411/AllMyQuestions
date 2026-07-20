@@ -42,7 +42,7 @@ public class SetMatrixZero {
     // TC: O(m * n). Traversing the M*N array
     // SC: O(m + n). Storing zero elements in a Set
     public static int[][] optimalApproach(int[][] matrix) {
-        return new int[][];
+        return new int[][] {};
     }
 
     // Approach: Traverse the original array and store row and column indices which

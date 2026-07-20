@@ -1,10 +1,10 @@
 
 import java.util.Arrays;
 // LC: 53. Maximum Subarray
-// Problem: An unsorted array is given, find the largest sum and print the subarray
+// Problem: An unsorted array is given, find the subarray with the largest sum and print it
 
 // Input: [-2,1,-3,4,-1,2,1,-5,4]  
-// Output: 6, Explaination: 4,-1,2,1 is the subarray
+// Output: 6, Explaination: 4,-1,2,1 is an subarray with largest sum
 
 // Input:[1]
 // Output: 1, Explaination: 1 is the only subarray possible
@@ -22,7 +22,7 @@ public class MaximumSubarraySum {
     }
 
     // Approach: Use Kadane' Algorithm. Traverse the whole array and check if
-    // current is positive or should we start from the current number
+    // current sum is positive or should we start from the current number
     // TC: O(n)
     // SC: O(1)
     public static int optimalApproach(int[] nums) {
