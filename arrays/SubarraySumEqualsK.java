@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 // LC: 560. Subarray Sum Equals K
 // Problem: We have an array, nums[], and a value K. Return the total number of subarrays whose sum  = k.
@@ -16,7 +18,34 @@ public class SubarraySumEqualsK {
         int k = 2;
         System.out.print("Original array is : " + Arrays.toString(nums));
         System.out.println(", K = " + k);
-        System.out.println("Total number of subarrays are: " + bruteForceApproach(nums, k));
+        // System.out.println("Total number of subarrays are: Brute Force Approach: " +
+        // bruteForceApproach(nums, k));
+        System.out.println("Total number of subarrays are: Optimal Approach: " + optimalApproach(nums, k));
+    }
+
+    // Approach: While iterating, maintain a running prefix sum. At each step, check
+    // the map for (currentSum - k). If found, add its count to the answer,
+    // since each occurrence represents a valid subarray ending at the current
+    // index. Then record the current prefix sum in the map for future lookups.
+    // TC: O(n)
+    // SC: O(n)
+    private static int optimalApproach(int[] nums, int k) {
+        int answer = 0;
+        Map<Integer, Integer> prefixSum = new HashMap<>();
+        prefixSum.put(0, 1);
+        int totalSum = 0;
+
+        for (int number : nums) {
+            totalSum += number;
+
+            int needed = totalSum - k;
+            if (prefixSum.containsKey(needed)) {
+                answer += prefixSum.get(needed);
+            }
+
+            prefixSum.put(totalSum, prefixSum.getOrDefault(totalSum, 0) + 1);
+        }
+        return answer;
     }
 
     // Approach: Use 2 pointers from the left, and calculate every subarray range
