@@ -14,28 +14,27 @@ import java.util.Stack;
 // Input: ()()
 // Output: 
 
-// Pattern: 
+// Pattern: Stack 
 public class RemoveOutermostParentheses {
-    // Approach: Use a Stack to track the opening and closing parantheses. For '(',
-    // if Stack is not empty, then add it to answer, then always push it.
-    // For ')', pop first and if Stack is not empty, add it to answer. If it is
-    // empty, then do not add to Stack.
+    // Approach: Use a counter to track the opening and closing parantheses. For
+    // '(', if counter > 0, then add it to the answer. Always
+    // incremenet the counter by 1. For ')', reduce the counter by 1. If counter >
+    // 0, then add it to the answer.
     // TC: O(n) Traverse the whole string
     // SC: O(1) No new DS created
     public static String optimalApproach(String s) {
-        Stack<Character> validP = new Stack<>();
+        int counter = 0;
         StringBuilder ans = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
-            char currentCharacter = s.charAt(i);
-            if (currentCharacter == '(') {
-                if (!validP.isEmpty())
-                    ans.append(currentCharacter);
-                validP.push(currentCharacter);
-            } else {
-                validP.pop();
-                if (validP.size() != 0) {
+            char ch = s.charAt(i);
+            if (ch == '(') {
+                if (counter > 0)
+                    ans.append('(');
+                counter++;
+            } else if (ch == ')') {
+                counter--;
+                if (counter > 0)
                     ans.append(')');
-                }
             }
         }
         return ans.toString();
@@ -70,5 +69,7 @@ public class RemoveOutermostParentheses {
         String s = "(()((()))())";
         System.out.println("Original string: " + s);
         System.out.println("String after removing the outer parantheses: Brute Force: " + bruteForce(s));
+        System.out.println("String after removing the outer parantheses: Optimal Approach: " + optimalApproach(s));
+
     }
 }
