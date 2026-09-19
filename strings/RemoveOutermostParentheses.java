@@ -1,56 +1,74 @@
 package strings;
+// LC: 1021. Remove Outermost Parentheses
 
-// FROM THE VALID PARANTHESES STRING, DECOMPOSE IT FIRST, AND THEN REMOVE THE OUTERMOST PARANTHESES
-// RETURN THE RESULT OF THE ABOVE OPERATION
+import java.util.Stack;
 
-// Input: string: "()"
-// Output: ""
+// Problem: We have a valid string of parantheses. Remove the outermost parantheses of every primitive decomposition and return the remaining string.
 
-// Input: string: "(()())(())"
-// Output: "()()()"
+// Constraints: It will only have '(' or ')'
+// It can be empty
 
-// Input: string: "(()())(())(()(()))"
-// Output: "()()()()(())"
+// Input: (()())(())
+// Output: ()()()
 
+// Input: ()()
+// Output: 
+
+// Pattern: 
 public class RemoveOutermostParentheses {
-    public static void main(String[] args) {
-        String originalString = "()";
-        System.out.println("Original string is: " + originalString);
-        System.out.println("String after removing the outer parantheses on the decomposed string is: "
-                + removeOuterParentheses(originalString));
-    }
-
-    // APPROACH: Use a depth variable to check if we are at which level. If we are
-    // at level 0, then we skip appending the parantheses to the answer string.
-    // In depth is more than 0, we append it
-
-    // TC: O(n). Traverse the entire string once
-    // SC: O(1). Space for StringBuilder (worst case: n-2 characters).
-    public static String removeOuterParentheses(String s) {
-
-        // EDGE CASE: IF STRING IS NULL OR EMPTY
-        if (s == null || s.length() == 0) {
-            return "";
-        }
-
-        // StringBuilder because we will be appending new characters dynamically
-        StringBuilder ansString = new StringBuilder();
-        int depth = 0;
-
-        for (char ch : s.toCharArray()) {
-            if (ch == '(') {
-                if (depth > 0) {
-                    ansString.append(ch);
-                }
-                depth++;
+    // Approach: Use a Stack to track the opening and closing parantheses. For '(',
+    // if Stack is not empty, then add it to answer, then always push it.
+    // For ')', pop first and if Stack is not empty, add it to answer. If it is
+    // empty, then do not add to Stack.
+    // TC: O(n) Traverse the whole string
+    // SC: O(1) No new DS created
+    public static String optimalApproach(String s) {
+        Stack<Character> validP = new Stack<>();
+        StringBuilder ans = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char currentCharacter = s.charAt(i);
+            if (currentCharacter == '(') {
+                if (!validP.isEmpty())
+                    ans.append(currentCharacter);
+                validP.push(currentCharacter);
             } else {
-                depth--;
-                if (depth > 0) {
-                    ansString.append(ch);
+                validP.pop();
+                if (validP.size() != 0) {
+                    ans.append(')');
                 }
             }
         }
+        return ans.toString();
+    }
 
-        return ansString.toString();
+    // Approach: Use a Stack to track the opening and closing parantheses. For '(',
+    // if Stack is not empty, then add it to answer, then always push it.
+    // For ')', pop first and if Stack is not empty, add it to answer. If it is
+    // empty, then do not add to Stack.
+    // TC: O(n) Traverse the whole string and populate the Stack
+    // SC: O(n) Storing all parantheses
+    public static String bruteForce(String s) {
+        Stack<Character> validP = new Stack<>();
+        StringBuilder ans = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char currentCharacter = s.charAt(i);
+            if (currentCharacter == '(') {
+                if (!validP.isEmpty())
+                    ans.append(currentCharacter);
+                validP.push(currentCharacter);
+            } else {
+                validP.pop();
+                if (validP.size() != 0) {
+                    ans.append(')');
+                }
+            }
+        }
+        return ans.toString();
+    }
+
+    public static void main(String[] args) {
+        String s = "(()((()))())";
+        System.out.println("Original string: " + s);
+        System.out.println("String after removing the outer parantheses: Brute Force: " + bruteForce(s));
     }
 }
