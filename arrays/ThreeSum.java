@@ -55,7 +55,7 @@ public class ThreeSum {
                 }
             }
         }
-        return new ArrayList<>(triplets);
+        return triplets;
     }
 
     // Approach: Lock one number of the triplet. Then, iterate over the array to
