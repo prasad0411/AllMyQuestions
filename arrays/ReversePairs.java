@@ -3,16 +3,20 @@ import java.util.Arrays;
 // Problem: Return number of reverse pairs in array.
 // Reverse Pair (i, j):
 // 0 <= i < j < nums.length and nums[i] > 2 * nums[j] 
+// Constraints: Each element in the array is positive
 
-// Input: [-1,0,1,2,-1,-4] 
-// -1, -1, 0, 1, 2, 4
-// Output: [[-1,-1,2],[-1,0,1]]
+// Input: [1,3,2,3,1] 
+// Output: 2
 
-// Input: [0,0,0]
-// Output: [[0,0,0]
+// Input: [2,4,3,5,1]
+// Output: 3
 
-// Pattern: Arrays: 2 pointers
+// Pattern: Arrays: 
 public class ReversePairs {
+    // Approach: Use 2 loops for i and j. Increment the counter for every valid
+    // iteration.
+    // TC: O(N*N)
+    // SC: O(1) Not creating any new data structure
     public static int bruteForce(int[] nums) {
         int length = nums.length;
         int counter = 0;

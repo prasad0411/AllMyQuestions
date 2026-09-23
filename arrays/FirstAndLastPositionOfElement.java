@@ -16,12 +16,10 @@ public class FirstAndLastPositionOfElement {
     public static void main(String[] args) {
         int originalArray[] = { 5, 7, 7, 8, 8, 10 };
         int target = 8;
-        System.out.println("Array is: " + Arrays.toString(originalArray));
+        System.out.println("Original array is: " + Arrays.toString(originalArray));
         System.out.println("Target element is: " + target);
-        System.out.println("Indices are: " + Arrays.toString(bruteForce(originalArray,
+        System.out.println("Optimal approach: Indices are: " + Arrays.toString(optimalApproach(originalArray,
                 target)));
-        // System.out.println("Indices are: " +
-        // Arrays.toString(optimalApproach(originalArray, target)));
     }
 
     // APPROACH: Use Binary search to find the first and last positions.
@@ -30,102 +28,40 @@ public class FirstAndLastPositionOfElement {
     // Traverse all the array elements once
     // SC: O(1). No new data structure.
     public static int[] optimalApproach(int[] nums, int target) {
-        System.out.println("Optimal Approach => ");
+        int low = 0;
+        int high = nums.length - 1;
+        int lastElement = -1;
+        int firstElement = -1;
 
-        int[] ansArray = { -1, -1 };
-
-        // EDGE CASE: EXIT IF ARRAY IS NULL OR HAS NO ELEMENTS
-        if (nums == null || nums.length == 0) {
-            return ansArray;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                lastElement = last(nums, target, mid);
+                firstElement = first(nums, target, mid);
+            } else if (target > nums[mid])
+                low = mid + 1;
+            else
+                high = mid - 1;
         }
 
-        ansArray[0] = firstIndex(nums, target);
-
-        // EDGE CASE: IF FIRST POSITION DOES NOT EXIST, LAST POSITION WONT EXIST AS WELL
-        if (ansArray[0] == -1) {
-            return new int[] { -1, -1 };
-        }
-
-        ansArray[1] = lastIndex(nums, target);
-
-        return ansArray;
+        return new int[] { firstElement, lastElement };
     }
 
-    // While checking for first index, when we find the target, we
-    // preserve the midPointer and do rightPointer = midPointer -1 to check if we
-    // can find further smaller value than middlePointer
-    private static int firstIndex(int[] nums, int target) {
-        int startIndex = -1;
-        int leftPointer = 0;
-        int rightPointer = nums.length - 1;
-
-        while (leftPointer <= rightPointer) {
-            int midPointer = leftPointer + (rightPointer - leftPointer) / 2;
-
-            if (nums[midPointer] == target) {
-                startIndex = midPointer;
-                rightPointer = midPointer - 1;
-            } else if (nums[midPointer] > target) {
-                rightPointer = midPointer - 1;
-            } else {
-                leftPointer = midPointer + 1;
-            }
+    private static int first(int[] nums, int target, int mid) {
+        int ans = mid;
+        for (int i = mid - 1; i >= 0; i--) {
+            if (nums[i] == target)
+                ans = i;
         }
-
-        return startIndex;
+        return ans;
     }
 
-    // While checking for last index, when we find the target, we
-    // preserve the midPointer and do leftPointer = midPointer +1 to check if we
-    // can find further bigger value than middlePointer
-    private static int lastIndex(int[] nums, int target) {
-        int lastIndex = -1;
-        int leftPointer = 0;
-        int rightPointer = nums.length - 1;
-
-        while (leftPointer <= rightPointer) {
-            int midPointer = leftPointer + (rightPointer - leftPointer) / 2;
-
-            if (nums[midPointer] == target) {
-                lastIndex = midPointer;
-                leftPointer = midPointer + 1;
-            } else if (nums[midPointer] > target) {
-                rightPointer = midPointer - 1;
-            } else {
-                leftPointer = midPointer + 1;
-            }
+    private static int last(int[] nums, int target, int mid) {
+        int ans = mid;
+        for (int i = mid + 1; i < nums.length; i++) {
+            if (nums[i] == target)
+                ans = i;
         }
-
-        return lastIndex;
-    }
-
-    // APPROACH: Use the Single Pass approach, and declare start and end indices to
-    // check for the positions of the target element.
-    // In each iteration, check if we need to modify the start index (only on first
-    // occurrence).
-    // Keep updating the last index on each occurrence of the target.
-
-    // TC: O(n).
-    // Traverse all the array elements once
-    // SC: O(1). No new data structure.
-    public static int[] bruteForce(int[] nums, int target) {
-        System.out.println("Brute Force => ");
-
-        // EDGE CASE: EXIT IF ARRAY IS NULL OR HAS NO ELEMENTS
-        if (nums == null || nums.length == 0) {
-            return new int[] { -1, -1 };
-        }
-
-        int startindex = -1, lastIndex = -1;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == target) {
-                if (startindex == -1) {
-                    startindex = i;
-                }
-                lastIndex = i;
-            }
-        }
-
-        return startindex != -1 ? new int[] { startindex, lastIndex } : new int[] { -1, -1 };
+        return ans;
     }
 }
