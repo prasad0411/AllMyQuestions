@@ -1,7 +1,9 @@
 import java.util.Arrays;
 
-// RETURN THE STARTING AND ENDING INDICES OF THE TARGET ELEMENT FROM SORTED ARRAY.
-// IF THAT ELEMENT IS NOT PRESENT, RETURN -1 -1.
+// LC: 34. Find First and Last Position of Element in Sorted Array
+// Problem: Return the first and last position of the target element from Sorted array
+// Constraints: Array is sorted
+// Array might be empty
 
 // Input: [5,7,7,8,8,10], target = 8
 // Output: [3, 4]
@@ -12,9 +14,10 @@ import java.util.Arrays;
 // Input: [], target = 0
 // Output: [-1,-1]
 
+// Pattern: Arrays: Modified Binary Search
 public class FirstAndLastPositionOfElement {
     public static void main(String[] args) {
-        int originalArray[] = { 5, 7, 7, 8, 8, 10 };
+        int originalArray[] = { 5, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 10 };
         int target = 8;
         System.out.println("Original array is: " + Arrays.toString(originalArray));
         System.out.println("Target element is: " + target);
@@ -22,45 +25,49 @@ public class FirstAndLastPositionOfElement {
                 target)));
     }
 
-    // APPROACH: Use Binary search to find the first and last positions.
-
+    // Approach: Directly find the leftmost and rightmost occurence of the target in
+    // array.
     // TC: O(log n) + O(log n) = O(log n).
-    // Traverse all the array elements once
     // SC: O(1). No new data structure.
     public static int[] optimalApproach(int[] nums, int target) {
-        int low = 0;
-        int high = nums.length - 1;
-        int lastElement = -1;
-        int firstElement = -1;
-
-        while (low < high) {
-            int mid = low + (high - low) / 2;
-            if (nums[mid] == target) {
-                lastElement = last(nums, target, mid);
-                firstElement = first(nums, target, mid);
-            } else if (target > nums[mid])
-                low = mid + 1;
-            else
-                high = mid - 1;
+        if (nums == null) {
+            throw new IllegalArgumentException("Array is null.");
         }
-
-        return new int[] { firstElement, lastElement };
+        return new int[] { first(nums, target), last(nums, target) };
     }
 
-    private static int first(int[] nums, int target, int mid) {
-        int ans = mid;
-        for (int i = mid - 1; i >= 0; i--) {
-            if (nums[i] == target)
-                ans = i;
+    private static int first(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length - 1;
+        int ans = -1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                ans = mid;
+                high = mid - 1;
+            } else if (nums[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
         }
         return ans;
     }
 
-    private static int last(int[] nums, int target, int mid) {
-        int ans = mid;
-        for (int i = mid + 1; i < nums.length; i++) {
-            if (nums[i] == target)
-                ans = i;
+    private static int last(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length - 1;
+        int ans = -1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                ans = mid;
+                low = mid + 1;
+            } else if (nums[mid] > target) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
         }
         return ans;
     }

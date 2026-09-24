@@ -1,8 +1,10 @@
 import java.util.Arrays;
 
-// IN THE METHOD, THE ARRAY HAS ALREADY BEEN ROTATED K TIMES (K IS UNKNOWN).
-// NEED TO FIND THE INDEX OF THE TARGET ELEMENT FROM THAT ROTATED ARRAY.
-// IF THE TARGET ELEMENT IS NOT PRESENT, RETURN -1
+// LC: 33. Search in Rotated Sorted Array
+// Problem: Find the index at which the target element is present in the sorted array.
+// The array might be left rotated by K times.
+// Constraints: All elements are unique
+// Return -1 if target element does not exist.
 
 // Input: [4,5,6,7,0,1,2], target= 0
 // Output: 4
@@ -13,62 +15,42 @@ import java.util.Arrays;
 // Input: [1], target = 0
 // Output: -1
 
+// Pattern: Searching in Array: Modified Binary Search
+
 public class SearchInSortedArray1 {
     public static void main(String[] args) {
-        int[] modifiedArray = { 5, 1, 3 };
-        int target = 3;
-        System.out.println("Modified array with K rotations is: " + Arrays.toString(modifiedArray));
+        int[] arr = { 4, 5, 6, 7, 0, 1, 2 };
+        int target = 0;
+        System.out.println("Original array is: " + Arrays.toString(arr));
         System.out.println("Target element is: " + target);
-        System.out.println("Target element is present at index at: " + optimalApproach(modifiedArray, target));
+        System.out.println("Target element is present at index at: " + optimalApproach(arr, target));
     }
 
-    // APPROACH: Use modified binary search to find target in rotated array.
-    // At each step, identify which half is sorted, then check if target element is
-    // in that range.
-    // If target is in sorted half, search there; otherwise search the other half.
-
-    // TC: O(log n) - Binary search eliminates half the array each iteration
+    // Approach: Find out which part of the array is sorted. In that, check if
+    // the target element can exist. If yes, search in that space, else, check the
+    // other half.
+    // TC: O(log n). Using Binary Search to find target
     // SC: O(1). No new data structure.
     public static int optimalApproach(int[] nums, int target) {
-        System.out.println("Brute Force =>");
+        int low = 0;
+        int high = nums.length - 1;
 
-        // EDGE CASE: EXIT IF ARRAY IS NULL OR HAS NO ELEMENTS
-        if (nums == null || nums.length == 0) {
-            return -1;
-        }
-
-        // EDGE CASE: SINCE ARRAY HAS JUST ONE ELEMENT, IT WILL ALWAYS BE AT THE 0TH
-        // INDEX AFTER K ROTATIONS
-        if (nums.length == 1) {
-            return target == nums[0] ? 0 : -1;
-        }
-
-        int leftPointer = 0;
-        int rightPointer = nums.length - 1;
-        while (leftPointer <= rightPointer) {
-            int midPointer = leftPointer + (rightPointer - leftPointer) / 2;
-
-            // BEST CASE: TARGET ELEMENT IS AT THE MIDDLE INDEX
-            if (nums[midPointer] == target)
-                return midPointer;
-
-            // CHECK IF LEFT HALF OF ARRAY IS SORTED
-            else if (nums[leftPointer] <= nums[midPointer]) {
-                if (nums[leftPointer] <= target && target <= nums[midPointer]) {
-                    rightPointer = midPointer - 1;
-                } else
-                    leftPointer = midPointer + 1;
-            }
-
-            // CHECK IF RIGHT HALF OF ARRAY IS SORTED
-            else {
-                if (nums[midPointer] <= target && target <= nums[rightPointer]) {
-                    leftPointer = midPointer + 1;
-                } else
-                    rightPointer = midPointer - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target)
+                return mid;
+            else if (nums[low] <= nums[mid]) {
+                if (nums[low] <= target && target < nums[mid])
+                    high = mid - 1;
+                else
+                    low = mid + 1;
+            } else {
+                if (nums[mid] < target && target <= nums[high])
+                    low = mid + 1;
+                else
+                    high = mid - 1;
             }
         }
-
         return -1;
     }
 }
