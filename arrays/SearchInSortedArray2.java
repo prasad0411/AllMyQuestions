@@ -1,46 +1,74 @@
 import java.util.Arrays;
 
 // LC: 81. Search in Rotated Sorted Array II
-// Problem: Find the index at which the target element is present in the sorted array.
-// The array might be left rotated by K times.
-// Constraints: All elements are unique
-// Return -1 if target element does not exist.
-// IN THE METHOD, THE ARRAY HAS ALREADY BEEN ROTATED K TIMES (K IS UNKNOWN).
-// DUPLICATES EXIST
-// RETURN TRUE IF THE TARGET ELEMENT EXISTS, OTHERWISE FALSE
+// Problem: Return true if the target element is present in the sorted array which contains duplicates.
+// The array is left rotated by K (0 or more) times.
+// Constraints: Some elements repeat 
+// Return false if the target element does not exist.
 
-// Input: [4,5,6,7,0,1,2], target= 0
+// Input: [2,5,6,0,0,1,2], target= 0
 // Output: true
 
-// Input: [4,5,6,7,0,1,2], target= 3
+// Input: [4,5,6,6,7,0,1,2,4,4], target= 3
 // Output: false
 
-// Input: [1], target = 0
-// Output: false
+// Pattern: Searching in Array: Modified Binary Search
 
 public class SearchInSortedArray2 {
     public static void main(String[] args) {
-        int[] modifiedArray = { 1, 5, 1, 1, 31, 1, 5 };
-        int target = 1;
+        int[] modifiedArray = { 2, 2, 2, 3, 2, 2, 2 };
+        int target = 3;
         System.out.println("Modified array with K rotations is: " + Arrays.toString(modifiedArray));
         System.out.println("Target element is: " + target);
-        System.out.println("Target element present? " + bruteForceApproach(modifiedArray, target));
+        // System.out.println("Target element present? Brute Force: " + bruteForceApproach(modifiedArray, target));
+        System.out.println("Target element present? Optimal Approach Force: " + optimalApproach(modifiedArray, target));
     }
 
-    // APPROACH: Traverse entire array to check if the element exists or no
+    // Approach: Find out which part of the array is sorted. In that, check if
+    // the target element can exist. If yes, search in that space, else, check the
+    // other half.
+    // TC: O(log n). Using Binary Search to find target (avg case)
+    // TC: O(n). Linear Traversal (worse case) When there are many duplicates, and
+    // we are forced to reduce low and high by 1
+    // SC: O(1). No new data structure used
+    public static boolean optimalApproach(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length - 1;
 
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (nums[mid] == target)
+                return true;
+            else if (nums[low] == nums[mid] && nums[mid] == nums[high]) {
+                low++;
+                high--;
+            } else if (nums[low] <= nums[mid]) {
+                if (nums[low] <= target && target < nums[mid]) {
+                    high = mid - 1;
+                } else
+                    low = mid + 1;
+            } else {
+                if (nums[mid] < target && target <= nums[high]) {
+                    low = mid + 1;
+                } else
+                    high = mid - 1;
+            }
+        }
+        return false;
+    }
+
+    // Approach: Traverse entire array to check if the target element exists or no
     // TC: O(n) - Linear search across the entire array
-    // SC: O(1). No new data structure.
+    // SC: O(1) - No new data structure created.
     public static boolean bruteForceApproach(int[] nums, int target) {
-        System.out.println("Brute Force Approach =>");
-
-        // EDGE CASE: EXIT IF ARRAY IS NULL OR HAS NO ELEMENTS
+        // Edge case: Array is
         if (nums == null || nums.length == 0) {
-            return false;
+            throw new IllegalArgumentException("Array is null or empty.");
         }
 
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == target)
+        for (int num : nums) {
+            if (num == target)
                 return true;
         }
 
