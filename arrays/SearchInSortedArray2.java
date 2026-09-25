@@ -21,7 +21,7 @@ public class SearchInSortedArray2 {
         System.out.println("Modified array with K rotations is: " + Arrays.toString(modifiedArray));
         System.out.println("Target element is: " + target);
         // System.out.println("Target element present? Brute Force: " + bruteForceApproach(modifiedArray, target));
-        System.out.println("Target element present? Optimal Approach Force: " + optimalApproach(modifiedArray, target));
+        System.out.println("Target element present? Optimal Approach: " + optimalApproach(modifiedArray, target));
     }
 
     // Approach: Find out which part of the array is sorted. In that, check if
