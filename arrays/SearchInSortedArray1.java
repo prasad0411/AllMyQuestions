@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 // LC: 33. Search in Rotated Sorted Array I
-// Problem: Find the index at which the target element is present in the sorted array.
+// Problem: Return the index at which the target element is present in the sorted array.
 // The array might be left rotated by K times.
 // Constraints: All elements are unique
 // Return -1 if target element does not exist.
