@@ -8,7 +8,7 @@ import java.util.Deque;
 // We can only access its topmost element at any given time
 // We insert elements into the Stack by using push()
 // We remove elements from the Stack by using pop()
-// We can check the topmost element by using peek()grep -n "git.*add\|subprocess.*git" scripts/cleanup_not_applied.py | head -5
+// We can check the topmost element by using peek()
 // We can check if Stack is empty by isEmpty()
 
 public class StacksPractice {
