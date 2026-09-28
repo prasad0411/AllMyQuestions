@@ -23,25 +23,33 @@ import java.util.Deque;
 public class RemoveAllAdjacentDuplicatesInString {
     // Approach: While pushing characters into Stack, check if current character
     // matches with the topmost elemnt of the Stack. If yes, pop it, so both
-    // characters are removed.
+    // characters are removed, else push into Stack
     // TC: O(N) Traversing the whole string
-    // SC: O(N) Storing all characters in Stack
-    public static String removeDuplicates(String s) {
-        if (s == null || s.length() == 0)
+    // SC: O(N) Storing all characters in Stack and StringBuilder for reversal
+    public static String optimalApproach(String s) {
+        if (s == null || s.isEmpty())
             throw new IllegalArgumentException("String is null or empty.");
 
         Deque<Character> stack = new ArrayDeque<>();
         for (int i = 0; i < s.length(); i++) {
-
+            char currentCh = s.charAt(i);
+            if (!stack.isEmpty() && stack.peek() == currentCh)
+                stack.pop();
+            else
+                stack.push(currentCh);
         }
-        Deque<Character> stack = new ArrayDeque<>();
 
-        return stack.toString();
+        StringBuilder ans = new StringBuilder();
+        while (!stack.isEmpty()) {
+            ans.append(stack.pop());
+        }
+
+        return ans.reverse().toString();
     }
 
     public static void main(String[] args) {
         String s = "azxxzy";
         System.out.println("Original string is: " + s);
-        System.out.println("String after removing all adjacent duplicates: Optimal approach: " + removeDuplicates(s));
+        System.out.println("String after removing all adjacent duplicates: Optimal approach: " + optimalApproach(s));
     }
 }
