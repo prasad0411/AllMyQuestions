@@ -11,6 +11,7 @@ import java.util.Deque;
 
 // Constraints: Every character is a lowercase Engish character.
 // Atleast 1 character exists in the string.
+// Can return empty string.
 
 // Input: "abbaca"
 // Output: "ca"
