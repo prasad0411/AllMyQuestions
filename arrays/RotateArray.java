@@ -24,7 +24,6 @@ public class RotateArray {
                 lastKElements.add(nums[i]);
             }
         }
-        System.out.println(lastKElements);
         System.out.println("Rotated array is: " + Arrays.toString(nums));
     }
 

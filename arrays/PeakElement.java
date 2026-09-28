@@ -16,6 +16,34 @@ import java.util.Arrays;
 // Pattern: Arrays: Searching in Array: Modified Binary Search
 
 public class PeakElement {
+    // Approach: Binary search on the slope. Check edges first, then move toward the
+    // larger neighbor since a peak always lies that way.
+    // TC: O(log n). Halving the search space each step
+    // SC: O(1). No new data structure used
+    public static int optimalApproach(int[] nums) {
+        if (nums.length == 1)
+            return 0;
+
+        if (nums[0] > nums[1])
+            return 0;
+        if (nums[nums.length - 1] > nums[nums.length - 2])
+            return nums.length - 1;
+
+        int low = 1;
+        int high = nums.length - 2;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] > nums[mid - 1] && nums[mid] > nums[mid + 1])
+                return mid;
+            else if (nums[mid] < nums[mid + 1])
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+        return -1;
+    }
+
     // Approach: Iterate over the entire array and check for i, i-1 and i+1
     // TC: O(n). Linear Traversal
     // SC: O(1). No new data structure used
@@ -40,6 +68,7 @@ public class PeakElement {
     public static void main(String[] args) {
         int arr[] = { 1, 2, 3, 7, 4, 3, 2 };
         System.out.println("Original array is: " + Arrays.toString(arr));
-        System.out.println("Peak Element is: " + bruteForce(arr));
+        System.out.println("Peak Element is: Brute force" + bruteForce(arr));
+        System.out.println("Peak Element is: Optimal approach" + optimalApproach(arr));
     }
 }
