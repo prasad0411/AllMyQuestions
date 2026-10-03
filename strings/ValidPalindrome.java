@@ -14,18 +14,17 @@ package strings;
 // Pattern: Strings: 2 pointers
 public class ValidPalindrome {
     public static void main(String[] args) {
-        String s1 = "race a car";
-
-        System.out.println("Brute Force => is string Palindrome? " + optimalApproach(s1));
+        String s = "race a car";
+        // System.out.println("Brute Force => is string Palindrome? " + bruteForce(s));
+        System.out.println("Optimal Approach => is string Palindrome? " + optimalApproach(s));
     }
 
-    // Approach: Use 2 pointers to iterate over the original array.
-    // If both are letters, then append both and move on.
-    // If one is digit and other is letter or vice versa, append both and move on.
-    // If either is alphanumeric, move to next index. Keep the other index same.
-    // Continue till i < j.
-    // TC: O(n). One pass over the original string.
-    // SC: O(1). Not creating any new Data Structure.
+    // Approach: Two pointers from both ends. Skip non-alphanumeric chars on either
+    // side.
+    // Compare the two (lowercased); if they differ, not a palindrome. Else move
+    // both inward.
+    // TC: O(n). One pass with two pointers.
+    // SC: O(1). No new data structure.
     public static boolean optimalApproach(String s) {
         int i = 0;
         int j = s.length() - 1;
@@ -38,13 +37,6 @@ public class ValidPalindrome {
                 j--;
             else if (Character.toLowerCase(leftChar) != Character.toLowerCase(rightChar))
                 return false;
-            else if ((Character.isLetter(leftChar) && Character.isDigit(rightChar))
-                    || (Character.isDigit(leftChar) && Character.isLetter(rightChar)))
-                return false;
-            else if (!Character.isLetterOrDigit(leftChar))
-                i++;
-            else if (!Character.isLetterOrDigit(rightChar))
-                j--;
             else {
                 i++;
                 j--;
