@@ -59,12 +59,8 @@ public class ValidPalindrome {
                 ansString.append(Character.toLowerCase(currentCh));
         }
 
-        i = 0;
-        int j = ansString.length() - 1;
-        while (i < j) {
-            if (ansString.charAt(i++) != ansString.charAt(j--))
-                return false;
-        }
+        if (!ansString.toString().equals(ansString.reverse().toString()))
+            return false;
 
         return true;
     }
