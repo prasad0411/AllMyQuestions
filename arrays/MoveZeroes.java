@@ -11,13 +11,13 @@
 // Input: strs = [0]
 // Output: [0]
 
-// Pattern: Arrays:
+// Pattern: Arrays: 2 pointers
 
 import java.util.Arrays;
 
 public class MoveZeroes {
-
-    // Approach: Put all non zero elements
+    // Approach: First pass moves all non zero elements to the front, keeping order.
+    // Second pass fills the remaining positions with zeros.
     // TC: O(n). Traversing the whole array.
     // SC: O(1). No new data structure is created.
     public static void moveZeroes(int[] nums) {
